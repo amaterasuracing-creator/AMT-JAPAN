@@ -210,6 +210,7 @@
       .hero-sticky {
         position: sticky;
         top: 0;
+        height: 100vh;
         min-height: 100vh;
         overflow: hidden;
       }
@@ -1499,36 +1500,55 @@
         }
 
         .hero {
-          height: 178vh;
-          min-height: 1080px;
-          --stage-width: min(620px, 128vw);
-          --stage-top: 27vh;
+          height: 170vh;
+          min-height: 980px;
+          --stage-width: min(540px, 118vw);
+          --stage-top: 22vh;
+        }
+
+        .hero-sticky,
+        .hero-motion-layer,
+        .hero-page,
+        .hero-cover-page {
+          height: 100svh;
+          min-height: 100svh;
         }
 
         .hero.hero-revealed {
-          --stage-width: min(560px, 116vw);
-          --stage-top: 18vh;
-          --stage-scroll-x: min(38px, 8vw);
-          --stage-scroll-y: -10px;
-          --car-scroll-x: min(22px, 5vw);
-          --car-scroll-y: -8px;
-          --car-scale: 0.52;
+          --stage-width: min(500px, 108vw);
+          --stage-top: 7vh;
+          --stage-scroll-x: min(18px, 4vw);
+          --stage-scroll-y: -4px;
+          --car-scroll-x: min(12px, 3vw);
+          --car-scroll-y: -4px;
+          --car-scale: 0.43;
         }
 
         .hero-content {
           width: auto;
-          margin: 0 18px;
+          margin: 0 20px;
           padding: 0;
         }
 
         .car-stage {
-          height: 330px;
-          max-width: 120vw;
+          height: 300px;
+          max-width: 112vw;
+        }
+
+        .hero-cover-page {
+          align-content: end;
+          padding: 96px 0 clamp(42px, 8svh, 72px);
+        }
+
+        .hero-copy {
+          margin-top: 22px;
+          font-size: 16px;
+          line-height: 1.72;
         }
 
         .hero-status {
           grid-template-columns: 1fr;
-          margin: 34px 18px 0;
+          margin: 24px 20px 0;
           width: auto;
         }
 
@@ -2216,13 +2236,13 @@
           const textProgress = clamp((heroProgress - 0.42) / 0.42);
           const textEase = easeOutCubic(textProgress);
           const isMobile = window.innerWidth <= 920;
-          const stageTopStart = isMobile ? 27 : 9;
-          const stageTopEnd = isMobile ? 18 : 1;
-          const stageScrollXEnd = Math.min(isMobile ? 38 : 160, window.innerWidth * (isMobile ? 0.08 : 0.12));
-          const stageScrollYEnd = isMobile ? -10 : -46;
-          const carScrollXEnd = Math.min(isMobile ? 22 : 90, window.innerWidth * (isMobile ? 0.05 : 0.08));
-          const carScrollYEnd = isMobile ? -8 : -28;
-          const carScaleEnd = isMobile ? 0.52 : 0.56;
+          const stageTopStart = isMobile ? 22 : 9;
+          const stageTopEnd = isMobile ? 7 : 1;
+          const stageScrollXEnd = Math.min(isMobile ? 18 : 160, window.innerWidth * (isMobile ? 0.04 : 0.12));
+          const stageScrollYEnd = isMobile ? -4 : -46;
+          const carScrollXEnd = Math.min(isMobile ? 12 : 90, window.innerWidth * (isMobile ? 0.03 : 0.08));
+          const carScrollYEnd = isMobile ? -4 : -28;
+          const carScaleEnd = isMobile ? 0.43 : 0.56;
 
           hero.style.setProperty("--stage-top", `${stageTopStart + (stageTopEnd - stageTopStart) * moveProgress}vh`);
           hero.style.setProperty("--stage-opacity", String(1 - 0.22 * moveProgress));
