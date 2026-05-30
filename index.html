@@ -1344,6 +1344,122 @@
         background: rgba(226, 59, 39, 0.16);
       }
 
+      .partners {
+        background: var(--black);
+        --light-a-x: 76%;
+        --light-a-y: 40%;
+        --light-a-color: rgba(244, 189, 63, 0.16);
+        --light-b-x: 18%;
+        --light-b-y: 58%;
+        --light-b-color: rgba(226, 59, 39, 0.13);
+      }
+
+      .partners > p:not(.kicker) {
+        max-width: 760px;
+      }
+
+      .sponsor-board {
+        display: grid;
+        grid-template-columns: 1.2fr repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 34px;
+      }
+
+      .sponsor-slot {
+        position: relative;
+        overflow: hidden;
+        min-height: 146px;
+        padding: 22px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-top: 4px solid var(--gold);
+        background:
+          linear-gradient(140deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.045)),
+          rgba(255, 255, 255, 0.055);
+      }
+
+      .sponsor-slot::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, transparent 0 46%, rgba(244, 189, 63, 0.14) 47%, transparent 56%);
+        transform: translateX(-120%);
+        transition: transform 0.7s ease;
+      }
+
+      .sponsor-slot:hover::after {
+        transform: translateX(120%);
+      }
+
+      .sponsor-slot.featured-slot {
+        grid-row: span 2;
+        min-height: 306px;
+        border-top-color: var(--red);
+        background:
+          linear-gradient(145deg, rgba(226, 59, 39, 0.18), rgba(255, 255, 255, 0.055)),
+          rgba(255, 255, 255, 0.055);
+      }
+
+      .sponsor-slot span,
+      .sponsor-slot strong,
+      .sponsor-slot p {
+        position: relative;
+        z-index: 1;
+      }
+
+      .sponsor-slot span {
+        display: block;
+        color: var(--gold);
+        font-family: "Oswald", "Noto Sans JP", system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 950;
+        text-transform: uppercase;
+      }
+
+      .sponsor-slot strong {
+        display: block;
+        margin-top: 22px;
+        color: rgba(255, 255, 255, 0.92);
+        font-family: "Oswald", "Noto Sans JP", system-ui, sans-serif;
+        font-size: clamp(25px, 2.4vw, 42px);
+        line-height: 1;
+      }
+
+      .sponsor-slot.featured-slot strong {
+        margin-top: 58px;
+        font-size: clamp(34px, 4vw, 62px);
+      }
+
+      .sponsor-logo-frame {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 82px;
+        margin-top: 18px;
+        padding: 14px 16px;
+        background: var(--white);
+        box-shadow: 0 18px 44px rgba(0, 0, 0, 0.24);
+      }
+
+      .sponsor-logo-frame img {
+        display: block;
+        width: min(250px, 100%);
+        height: auto;
+      }
+
+      .sponsor-slot.has-logo strong {
+        margin-top: 14px;
+        font-size: clamp(21px, 1.6vw, 28px);
+      }
+
+      .sponsor-slot p {
+        margin: 16px 0 0;
+        color: rgba(255, 255, 255, 0.66);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
       .contact {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(430px, 0.64fr);
@@ -1570,6 +1686,20 @@
         .world-layout,
         .countdown {
           grid-template-columns: 1fr;
+        }
+
+        .sponsor-board {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .sponsor-slot.featured-slot {
+          grid-column: 1 / -1;
+          grid-row: auto;
+          min-height: 210px;
+        }
+
+        .sponsor-slot.featured-slot strong {
+          margin-top: 34px;
         }
 
         .status-grid,
@@ -2012,6 +2142,39 @@
           line-height: 1.55;
         }
 
+        .sponsor-board {
+          grid-template-columns: 1fr;
+          gap: 10px;
+          margin-top: 24px;
+        }
+
+        .sponsor-slot,
+        .sponsor-slot.featured-slot {
+          min-height: auto;
+          padding: 18px;
+        }
+
+        .sponsor-slot strong,
+        .sponsor-slot.featured-slot strong {
+          margin-top: 18px;
+          font-size: clamp(26px, 9vw, 38px);
+        }
+
+        .sponsor-logo-frame {
+          min-height: 74px;
+          margin-top: 14px;
+          padding: 12px;
+        }
+
+        .sponsor-slot.has-logo strong {
+          font-size: 21px;
+        }
+
+        .sponsor-slot p {
+          font-size: 13.5px;
+          line-height: 1.6;
+        }
+
         .contact {
           gap: 22px;
         }
@@ -2290,6 +2453,45 @@
         </div>
       </section>
 
+      <section class="section partners" id="partners">
+        <p class="kicker" data-reveal>Partner Board</p>
+        <h2 data-reveal data-reveal-delay="1">共に走るスポンサー</h2>
+        <p data-reveal data-reveal-delay="2">
+          AMT Racingの挑戦を支えてくださる企業・個人パートナーを掲載する枠です。
+          ロゴや企業名を、活動報告・SNS・資料と連動して発信していきます。
+        </p>
+        <div class="sponsor-board">
+          <article class="sponsor-slot featured-slot" data-reveal>
+            <span>Founding / Gold Partner</span>
+            <strong>Partner Slot</strong>
+            <p>AMT Racingの始まりを象徴するメインスポンサー枠。ロゴ掲載・活動発信・報告書で重点的に紹介します。</p>
+          </article>
+          <article class="sponsor-slot" data-reveal data-reveal-delay="1">
+            <span>Silver / Bronze</span>
+            <strong>Open</strong>
+            <p>ものづくり・教育支援の姿勢を、AMT Racingの活動と共に発信します。</p>
+          </article>
+          <article class="sponsor-slot" data-reveal data-reveal-delay="2">
+            <span>Supporter</span>
+            <strong>Open</strong>
+            <p>若者の挑戦を支えるパートナーとして、Web・活動報告で紹介します。</p>
+          </article>
+          <article class="sponsor-slot" data-reveal data-reveal-delay="3">
+            <span>Goods Partner</span>
+            <strong>Open</strong>
+            <p>物品提供・制作協力など、大会準備を支えるパートナー枠です。</p>
+          </article>
+          <article class="sponsor-slot has-logo" data-reveal data-reveal-delay="4">
+            <span>Technical Partner</span>
+            <div class="sponsor-logo-frame">
+              <img src="assets/formula-tmu-logo.jpg" alt="Formula TMU" />
+            </div>
+            <strong>Formula TMU</strong>
+            <p>東京都立大学Formula Studentチームによる技術支援パートナー。車両開発・設計面の挑戦を支えていただきます。</p>
+          </article>
+        </div>
+      </section>
+
       <section class="section dark contact" id="contact">
         <div>
           <p class="kicker">Contact</p>
@@ -2414,6 +2616,24 @@
               ".plan-row:nth-child(7) span": "技術支援",
               ".plan-row:nth-child(7) p span:nth-child(1)": "提供内容：CAD、CFD、加工、材料などの助言",
               ".plan-row:nth-child(7) p span:nth-child(2)": "価値：技術・ものづくり領域との親和性を発信",
+              ".partners .kicker": "Partner Board",
+              ".partners h2": "共に走るスポンサー",
+              ".partners > p:not(.kicker)": "AMT Racingの挑戦を支えてくださる企業・個人パートナーを掲載する枠です。ロゴや企業名を、活動報告・SNS・資料と連動して発信していきます。",
+              ".sponsor-slot:nth-child(1) span": "Founding / Gold Partner",
+              ".sponsor-slot:nth-child(1) strong": "Partner Slot",
+              ".sponsor-slot:nth-child(1) p": "AMT Racingの始まりを象徴するメインスポンサー枠。ロゴ掲載・活動発信・報告書で重点的に紹介します。",
+              ".sponsor-slot:nth-child(2) span": "Silver / Bronze",
+              ".sponsor-slot:nth-child(2) strong": "Open",
+              ".sponsor-slot:nth-child(2) p": "ものづくり・教育支援の姿勢を、AMT Racingの活動と共に発信します。",
+              ".sponsor-slot:nth-child(3) span": "Supporter",
+              ".sponsor-slot:nth-child(3) strong": "Open",
+              ".sponsor-slot:nth-child(3) p": "若者の挑戦を支えるパートナーとして、Web・活動報告で紹介します。",
+              ".sponsor-slot:nth-child(4) span": "Goods Partner",
+              ".sponsor-slot:nth-child(4) strong": "Open",
+              ".sponsor-slot:nth-child(4) p": "物品提供・制作協力など、大会準備を支えるパートナー枠です。",
+              ".sponsor-slot:nth-child(5) span": "Technical Partner",
+              ".sponsor-slot:nth-child(5) strong": "Formula TMU",
+              ".sponsor-slot:nth-child(5) p": "東京都立大学Formula Studentチームによる技術支援パートナー。車両開発・設計面の挑戦を支えていただきます。",
               ".contact .kicker": "Contact",
               ".contact h2": "0から、世界へ。その始まりを、共に創ってください。",
               ".contact p:not(.kicker)": "協賛のご相談、資料請求、面談のご希望など、お気軽にご連絡ください。0から世界へ向かう過程を、共に創るパートナーをお待ちしています。",
@@ -2523,6 +2743,24 @@
               ".plan-row:nth-child(7) span": "Technical Support",
               ".plan-row:nth-child(7) p span:nth-child(1)": "Includes: advice on CAD, CFD, machining, materials",
               ".plan-row:nth-child(7) p span:nth-child(2)": "Value: strong connection to engineering and manufacturing",
+              ".partners .kicker": "Partner Board",
+              ".partners h2": "Sponsors Running With Us",
+              ".partners > p:not(.kicker)": "This area highlights the companies and individual partners supporting AMT Racing. Partner names and logos can connect with our reports, social posts, and sponsor materials.",
+              ".sponsor-slot:nth-child(1) span": "Founding / Gold Partner",
+              ".sponsor-slot:nth-child(1) strong": "Partner Slot",
+              ".sponsor-slot:nth-child(1) p": "A main sponsor position representing the beginning of AMT Racing, highlighted through logo placement, activity updates, and reports.",
+              ".sponsor-slot:nth-child(2) span": "Silver / Bronze",
+              ".sponsor-slot:nth-child(2) strong": "Open",
+              ".sponsor-slot:nth-child(2) p": "Share your commitment to manufacturing and education through AMT Racing activities.",
+              ".sponsor-slot:nth-child(3) span": "Supporter",
+              ".sponsor-slot:nth-child(3) strong": "Open",
+              ".sponsor-slot:nth-child(3) p": "Be introduced as a partner supporting young challengers through our website and reports.",
+              ".sponsor-slot:nth-child(4) span": "Goods Partner",
+              ".sponsor-slot:nth-child(4) strong": "Open",
+              ".sponsor-slot:nth-child(4) p": "For in-kind support, production support, and practical help toward the competition.",
+              ".sponsor-slot:nth-child(5) span": "Technical Partner",
+              ".sponsor-slot:nth-child(5) strong": "Formula TMU",
+              ".sponsor-slot:nth-child(5) p": "A technical support partner from the Tokyo Metropolitan University Formula Student team, supporting our vehicle development and design challenge.",
               ".contact .kicker": "Contact",
               ".contact h2": "From zero to the world. Build the beginning with us.",
               ".contact p:not(.kicker)": "For sponsorship inquiries, materials, or meeting requests, please contact us. We are looking for partners to help build the journey from zero toward the world.",
