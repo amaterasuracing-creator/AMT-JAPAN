@@ -1588,7 +1588,14 @@
 
       @media (max-width: 560px) {
         .site-header {
+          grid-template-columns: auto auto auto;
+          justify-content: space-between;
           gap: 10px;
+          padding: 12px 14px;
+        }
+
+        .logo-link img {
+          width: 102px;
         }
 
         .mail-button {
@@ -1604,45 +1611,342 @@
           font-size: 11px;
         }
 
+        .section {
+          padding: 52px 18px;
+        }
+
+        .section h2 {
+          font-size: clamp(31px, 9vw, 42px);
+          line-height: 1.12;
+        }
+
+        .section p {
+          font-size: 15px;
+          line-height: 1.72;
+        }
+
+        .hero {
+          height: auto;
+          min-height: 100svh;
+          overflow: hidden;
+          --stage-width: min(430px, 112vw);
+          --stage-top: 54px;
+          --stage-opacity: 0.68;
+          --stage-scroll-x: 0px;
+          --stage-scroll-y: 0px;
+          --car-scroll-x: 0px;
+          --car-scroll-y: 0px;
+          --car-scale: 0.72;
+        }
+
+        .hero.hero-revealed {
+          --stage-width: min(430px, 112vw);
+          --stage-top: 54px;
+          --stage-opacity: 0.68;
+          --stage-scroll-x: 0px;
+          --stage-scroll-y: 0px;
+          --car-scroll-x: 0px;
+          --car-scroll-y: 0px;
+          --car-scale: 0.72;
+        }
+
+        .hero-sticky {
+          position: relative;
+          height: auto;
+          min-height: 100svh;
+          overflow: hidden;
+        }
+
+        .hero-motion-layer {
+          height: 360px;
+          overflow: visible;
+        }
+
+        .hero-page {
+          position: relative;
+          inset: auto;
+          min-height: auto;
+        }
+
+        .hero-intro-page,
+        .hero-page-indicator {
+          display: none;
+        }
+
+        .car-stage {
+          height: 250px;
+          max-width: 108vw;
+        }
+
+        .cad-car-image {
+          left: 5%;
+          width: 90%;
+        }
+
+        .hero-cover-page {
+          display: block;
+          min-height: 100svh;
+          padding: clamp(292px, 43svh, 340px) 0 34px;
+        }
+
+        .hero-content {
+          margin: 0 16px;
+        }
+
+        .js .hero-content,
+        .js .hero-status {
+          opacity: 1;
+          transform: none;
+          filter: none;
+          pointer-events: auto;
+          transition: none;
+        }
+
         .hero h1 {
-          font-size: 48px;
+          font-size: clamp(42px, 12vw, 52px);
         }
 
-        html[lang="en"] .hero h1 {
-          font-size: 46px;
+        .hero h1 small {
+          margin-top: 12px;
+          font-size: 20px;
         }
 
-        html[lang="en"] .hero h1 small {
-          font-size: 21px;
-        }
-
-        html[lang="en"] .section h2 {
-          font-size: clamp(34px, 9vw, 42px);
-        }
-
-        html[lang="en"] .mail-card strong {
-          font-size: clamp(20px, 5vw, 25px);
+        .hero-copy {
+          max-width: 100%;
+          margin-top: 18px;
+          font-size: 14.5px;
+          line-height: 1.65;
         }
 
         .actions {
           display: grid;
+          gap: 10px;
+          margin-top: 22px;
+        }
+
+        .button {
+          width: 100%;
+          min-height: 42px;
+          padding: 0 14px;
+          font-size: 14px;
+        }
+
+        .scroll-cue {
+          bottom: 22px;
+          padding: 9px 12px;
+          font-size: 14px;
+        }
+
+        .hero-page-indicator {
+          right: 14px;
+        }
+
+        .hero-status {
+          margin: 18px 16px 0;
+        }
+
+        .hero-status div {
+          padding: 12px 14px;
+        }
+
+        .hero-status span {
+          margin-bottom: 5px;
+          font-size: 10px;
+        }
+
+        .hero-status strong,
+        .hero-status div:last-child strong {
+          font-size: 14px;
+          line-height: 1.2;
+          white-space: normal;
+          overflow-wrap: anywhere;
+        }
+
+        html[lang="en"] .hero h1 {
+          font-size: clamp(38px, 10.6vw, 46px);
+        }
+
+        html[lang="en"] .hero h1 small {
+          font-size: 18px;
+        }
+
+        html[lang="en"] .section h2 {
+          font-size: clamp(31px, 8.5vw, 40px);
+        }
+
+        html[lang="en"] .mail-card strong {
+          font-size: clamp(18px, 4.8vw, 23px);
+        }
+
+        .about-logo img {
+          width: min(250px, 78vw);
+        }
+
+        .status-grid,
+        .support-grid,
+        .challenge-list {
+          gap: 12px;
+          margin-top: 24px;
+        }
+
+        .card {
+          min-height: auto;
+          padding: 18px;
+        }
+
+        .card h3 {
+          font-size: 20px;
+          margin-bottom: 10px;
         }
 
         .numbers {
-          grid-template-columns: 1fr;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+        }
+
+        .number {
+          min-height: 116px;
+          padding: 16px 14px;
+        }
+
+        .number span {
+          font-size: clamp(28px, 8.4vw, 36px);
+        }
+
+        .number p {
+          margin: 8px 0 0;
+          font-size: 12.5px;
+          line-height: 1.55;
+        }
+
+        .world-layout {
+          gap: 24px;
+        }
+
+        .world-stats {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 8px;
+          margin: 22px 0;
+        }
+
+        .world-stat {
+          padding: 12px 8px;
+        }
+
+        .world-stat strong {
+          font-size: clamp(26px, 8.5vw, 34px);
+        }
+
+        .world-stat span {
+          margin-top: 7px;
+          font-size: 10px;
+          line-height: 1.35;
+        }
+
+        .video-panel {
+          padding: 7px;
+        }
+
+        .video-link-content {
+          gap: 12px;
+          padding: 20px;
+        }
+
+        .video-title {
+          font-size: clamp(26px, 9vw, 38px);
+        }
+
+        .play-button {
+          width: 54px;
+        }
+
+        .video-caption {
+          display: grid;
+          gap: 4px;
+          font-size: 11px;
+        }
+
+        .race-strip {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          margin-top: 34px;
+        }
+
+        .race-strip div {
+          min-height: 74px;
+          padding: 13px;
+        }
+
+        .race-strip strong {
+          font-size: 13px;
+        }
+
+        .countdown {
+          gap: 24px;
+        }
+
+        .countdown-board {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+        }
+
+        .countdown-unit {
+          min-height: 98px;
+          padding: 16px 10px;
+        }
+
+        .countdown-unit strong {
+          font-size: clamp(38px, 13vw, 52px);
+        }
+
+        .countdown-unit span {
+          margin-top: 9px;
+          font-size: 10px;
+        }
+
+        .countdown-date {
+          display: flex;
+          width: 100%;
+          justify-content: center;
+          text-align: center;
+          font-size: 13px;
         }
 
         .plan-row {
           grid-template-columns: 1fr;
           gap: 8px;
+          padding: 16px;
         }
 
-        .countdown-board {
-          grid-template-columns: 1fr;
+        .plan-row strong {
+          font-size: 20px;
+        }
+
+        .plan-row span {
+          font-size: 16px;
+        }
+
+        .plan-row p {
+          font-size: 14px;
+          line-height: 1.55;
+        }
+
+        .contact {
+          gap: 22px;
+        }
+
+        .mail-card {
+          padding: 22px 18px;
+        }
+
+        .mail-card strong {
+          font-size: clamp(18px, 4.8vw, 23px);
+          white-space: normal;
+          overflow-wrap: anywhere;
         }
 
         footer {
           grid-template-columns: 1fr;
+          padding: 26px 18px;
         }
       }
     </style>
@@ -2236,11 +2540,36 @@
           const textProgress = clamp((heroProgress - 0.42) / 0.42);
           const textEase = easeOutCubic(textProgress);
           const isMobile = window.innerWidth <= 920;
-          const stageTopStart = isMobile ? 22 : 9;
-          const stageTopEnd = isMobile ? 7 : 1;
-          const stageScrollXEnd = Math.min(isMobile ? 18 : 160, window.innerWidth * (isMobile ? 0.04 : 0.12));
+          const isSmallMobile = window.innerWidth <= 560;
+
+          if (isSmallMobile) {
+            heroProgress = 1;
+            hero.style.setProperty("--stage-top", "54px");
+            hero.style.setProperty("--stage-opacity", "0.68");
+            hero.style.setProperty("--stage-scroll-x", "0px");
+            hero.style.setProperty("--stage-scroll-y", "0px");
+            hero.style.setProperty("--car-scroll-x", "0px");
+            hero.style.setProperty("--car-scroll-y", "0px");
+            hero.style.setProperty("--car-rotate", "4deg");
+            hero.style.setProperty("--car-scale", "0.72");
+            hero.style.setProperty("--speed-shift", "-80px");
+            hero.style.setProperty("--intro-text-opacity", "1");
+            hero.style.setProperty("--intro-text-x", "0px");
+            hero.style.setProperty("--intro-text-y", "0px");
+            hero.style.setProperty("--intro-text-blur", "0px");
+            hero.style.setProperty("--intro-status-y", "0px");
+            hero.style.setProperty("--cue-opacity", "0");
+            hero.style.setProperty("--page-one-active", "0%");
+            hero.style.setProperty("--page-two-active", "100%");
+            hero.classList.add("hero-revealed");
+            return;
+          }
+
+          const stageTopStart = isSmallMobile ? 20 : isMobile ? 22 : 9;
+          const stageTopEnd = isSmallMobile ? 5 : isMobile ? 7 : 1;
+          const stageScrollXEnd = Math.min(isSmallMobile ? 0 : isMobile ? 18 : 160, window.innerWidth * (isMobile ? 0.04 : 0.12));
           const stageScrollYEnd = isMobile ? -4 : -46;
-          const carScrollXEnd = Math.min(isMobile ? 12 : 90, window.innerWidth * (isMobile ? 0.03 : 0.08));
+          const carScrollXEnd = Math.min(isSmallMobile ? 0 : isMobile ? 12 : 90, window.innerWidth * (isMobile ? 0.03 : 0.08));
           const carScrollYEnd = isMobile ? -4 : -28;
           const carScaleEnd = isMobile ? 0.43 : 0.56;
 
