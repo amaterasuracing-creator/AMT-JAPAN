@@ -207,6 +207,13 @@
         --page-two-active: 0%;
       }
 
+      .hero:focus,
+      .hero:focus-visible,
+      .hero-sticky:focus,
+      .hero-sticky:focus-visible {
+        outline: none;
+      }
+
       .hero-sticky {
         position: sticky;
         top: 0;
@@ -2697,7 +2704,6 @@
         });
 
         if (hero) {
-          hero.setAttribute("tabindex", "0");
           updateHeroProgress();
           window.addEventListener("scroll", requestHeroUpdate, { passive: true });
           window.addEventListener("resize", requestHeroUpdate);
