@@ -1,0 +1,2318 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AMT Racing | アマテラス レーシング</title>
+    <meta
+      name="description"
+      content="AMT Racingは、STEM Racingを通じて日本に新しい教育の形をつくる高校生チームです。技術、資金調達、発信、チームづくりを実践し、0から世界へ挑みます。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;800;900&family=Oswald:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <style>
+      :root {
+        --black: #06080d;
+        --carbon: #111620;
+        --ink: #151a22;
+        --muted: #626b78;
+        --cream: #fff6e8;
+        --white: #ffffff;
+        --line: #e8ded0;
+        --red: #e23b27;
+        --orange: #ef6a2e;
+        --gold: #f4bd3f;
+        --green: #1d7152;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--white);
+        background: var(--black);
+        font-family: "Noto Sans JP", "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, system-ui, sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .site-header {
+        position: fixed;
+        inset: 0 0 auto 0;
+        z-index: 20;
+        display: grid;
+        grid-template-columns: auto 1fr auto auto;
+        align-items: center;
+        gap: 16px;
+        padding: 16px clamp(18px, 5vw, 64px);
+        color: var(--white);
+        background: linear-gradient(180deg, rgba(6, 8, 13, 0.92), rgba(6, 8, 13, 0.18));
+        backdrop-filter: blur(12px);
+      }
+
+      .logo-link img {
+        display: block;
+        width: 132px;
+        height: auto;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        font-size: clamp(15px, 1.12vw, 18px);
+        font-weight: 900;
+      }
+
+      .nav a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 0 14px;
+        border: 1px solid transparent;
+        background: rgba(255, 255, 255, 0.045);
+        opacity: 0.86;
+        transition: color 0.2s ease, opacity 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      }
+
+      .nav a:hover {
+        color: var(--gold);
+        border-color: rgba(244, 189, 63, 0.32);
+        background: rgba(244, 189, 63, 0.08);
+        opacity: 1;
+      }
+
+      .language-switch {
+        display: inline-flex;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .language-switch button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 42px;
+        min-height: 34px;
+        padding: 0 10px;
+        border: 0;
+        color: rgba(255, 255, 255, 0.72);
+        background: transparent;
+        cursor: pointer;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .language-switch button.is-active {
+        color: var(--black);
+        background: var(--gold);
+      }
+
+      .mail-button,
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 20px;
+        font-size: clamp(15px, 1.06vw, 17px);
+        font-weight: 900;
+        white-space: nowrap;
+      }
+
+      .mail-button,
+      .button,
+      .nav,
+      .kicker,
+      .hero h1,
+      .hero-status span,
+      .hero-status strong,
+      .number span,
+      .world-stat strong,
+      .plan-row strong,
+      .plan-row span,
+      .mail-card span,
+      .mail-card strong,
+      .race-strip strong,
+      .race-strip span,
+      .video-kicker,
+      .video-title {
+        font-family: "Oswald", "Noto Sans JP", system-ui, sans-serif;
+      }
+
+      .mail-button,
+      .button.primary {
+        color: var(--white);
+        background: var(--red);
+        box-shadow: 0 18px 40px rgba(226, 59, 39, 0.32);
+      }
+
+      .button.secondary {
+        color: var(--white);
+        border: 1px solid rgba(255, 255, 255, 0.32);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .button.video {
+        color: var(--black);
+        background: var(--gold);
+        box-shadow: 0 18px 40px rgba(244, 189, 63, 0.24);
+      }
+
+      .hero {
+        position: relative;
+        height: 190vh;
+        min-height: 1180px;
+        color: var(--white);
+        background: radial-gradient(circle at 72% 42%, rgba(239, 106, 46, 0.18), transparent 32%),
+          linear-gradient(135deg, #06080d 0%, #0c121b 52%, #06080d 100%);
+        --stage-left: 50%;
+        --stage-top: 9vh;
+        --stage-width: min(980px, 92vw);
+        --stage-opacity: 1;
+        --stage-scroll-x: 0px;
+        --stage-scroll-y: 0px;
+        --stage-center-x: -50%;
+        --car-scroll-x: 0px;
+        --car-scroll-y: 0px;
+        --car-rotate: 0deg;
+        --car-scale: 1;
+        --speed-shift: 0px;
+        --intro-text-opacity: 0;
+        --intro-text-x: -28px;
+        --intro-text-y: 34px;
+        --intro-text-blur: 10px;
+        --intro-status-y: 32px;
+        --cue-opacity: 1;
+        --page-one-active: 100%;
+        --page-two-active: 0%;
+      }
+
+      .hero-sticky {
+        position: sticky;
+        top: 0;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+
+      .hero.hero-revealed {
+        --stage-left: 50%;
+        --stage-top: 1vh;
+        --stage-width: min(980px, 92vw);
+        --stage-opacity: 0.78;
+        --stage-scroll-x: min(160px, 12vw);
+        --stage-scroll-y: -46px;
+        --stage-center-x: -50%;
+        --car-scroll-x: min(90px, 8vw);
+        --car-scroll-y: -28px;
+        --car-rotate: 8deg;
+        --car-scale: 0.56;
+        --speed-shift: -150px;
+        --intro-text-opacity: 1;
+        --intro-text-x: 0px;
+        --intro-text-y: 0px;
+        --intro-text-blur: 0px;
+        --intro-status-y: 0px;
+        --cue-opacity: 0;
+        --page-one-active: 0%;
+        --page-two-active: 100%;
+      }
+
+      .hero-motion-layer {
+        position: absolute;
+        inset: 0;
+        top: 0;
+        z-index: 2;
+        height: 100vh;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .hero-page {
+        position: absolute;
+        inset: 0;
+        min-height: 100vh;
+      }
+
+      .hero-intro-page {
+        z-index: 3;
+      }
+
+      .hero-cover-page {
+        position: absolute;
+        z-index: 4;
+        display: grid;
+        align-content: center;
+        min-height: 100vh;
+        padding: clamp(104px, 14vh, 150px) 0 clamp(64px, 9vh, 100px);
+      }
+
+      .hero-sticky::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 42%;
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+        background-size: 72px 72px;
+        mask-image: linear-gradient(180deg, transparent, black 44%, black);
+        opacity: 0.28;
+        transform: perspective(560px) rotateX(62deg) translateY(26%);
+        transform-origin: bottom;
+      }
+
+      .speed-lines {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(112deg, transparent 0 45%, rgba(226, 59, 39, 0.42) 45.2% 45.7%, transparent 46%),
+          linear-gradient(112deg, transparent 0 52%, rgba(244, 189, 63, 0.38) 52.2% 52.55%, transparent 52.9%),
+          repeating-linear-gradient(112deg, transparent 0 76px, rgba(255, 255, 255, 0.035) 78px, transparent 80px);
+        opacity: 0.72;
+        transform: translateX(var(--speed-shift, 0px));
+        transition: transform 1.15s cubic-bezier(0.2, 0.9, 0.14, 1);
+      }
+
+      .hero-glow {
+        position: absolute;
+        right: -10vw;
+        top: 7vh;
+        width: 58vw;
+        height: 58vw;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(244, 189, 63, 0.22), rgba(226, 59, 39, 0.10) 34%, transparent 62%);
+        filter: blur(2px);
+      }
+
+      .car-stage {
+        position: absolute;
+        z-index: 2;
+        left: var(--stage-left, auto);
+        right: var(--stage-right, clamp(54px, 8vw, 122px));
+        top: var(--stage-top, 18vh);
+        width: var(--stage-width, min(600px, 48vw));
+        height: 430px;
+        opacity: var(--stage-opacity, 1);
+        perspective: 1100px;
+        transform: translate3d(var(--stage-scroll-x, 0px), var(--stage-scroll-y, 0px), 0) translateX(var(--stage-center-x, 0px));
+        transition: transform 1.15s cubic-bezier(0.2, 0.9, 0.14, 1), opacity 1.15s ease, top 1.15s cubic-bezier(0.2, 0.9, 0.14, 1);
+      }
+
+      .cad-car-image {
+        position: absolute;
+        left: 3%;
+        top: 0;
+        width: 94%;
+        height: auto;
+        filter: drop-shadow(0 28px 42px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 34px rgba(226, 59, 39, 0.16));
+        transform:
+          translate3d(var(--car-scroll-x, 0px), var(--car-scroll-y, 0px), 0)
+          rotate(calc(-6deg + var(--car-rotate, 0deg)))
+          scale(var(--car-scale, 1));
+        transition: transform 1.15s cubic-bezier(0.2, 0.9, 0.14, 1), filter 1.15s ease;
+        will-change: transform;
+      }
+
+      .hero.is-scroll-driven .speed-lines,
+      .hero.is-scroll-driven .car-stage,
+      .hero.is-scroll-driven .cad-car-image,
+      .hero.is-scroll-driven .hero-content,
+      .hero.is-scroll-driven .hero-status,
+      .hero.is-scroll-driven .scroll-cue {
+        transition: none;
+      }
+
+      .car {
+        position: absolute;
+        left: 2%;
+        top: 26%;
+        width: 94%;
+        height: 54%;
+        transform: rotateX(58deg) rotateZ(-12deg);
+        transform-style: preserve-3d;
+        animation: float 4s ease-in-out infinite;
+      }
+
+      .car-body,
+      .car-nose,
+      .front-wing,
+      .front-wing::before,
+      .front-wing::after,
+      .side-pod,
+      .halo,
+      .halo::before,
+      .halo::after,
+      .car-cockpit,
+      .driver,
+      .car-tail,
+      .rear-wing,
+      .rear-wing::before,
+      .rear-wing::after,
+      .logo-decal {
+        position: absolute;
+        transform-style: preserve-3d;
+      }
+
+      .car-body {
+        left: 31%;
+        top: 37%;
+        width: 42%;
+        height: 27%;
+        border-radius: 54% 46% 30% 28% / 78% 70% 34% 32%;
+        background:
+          linear-gradient(110deg, rgba(255,255,255,0.18), transparent 24%),
+          linear-gradient(90deg, #a91516, #ff2430 48%, #d51e24 100%);
+        box-shadow: 0 18px 42px rgba(226, 59, 39, 0.38);
+      }
+
+      .car-body::before {
+        content: "";
+        position: absolute;
+        left: 11%;
+        right: 5%;
+        top: 18%;
+        height: 22%;
+        border-radius: 50%;
+        background: linear-gradient(90deg, rgba(255,255,255,0.25), transparent 70%);
+      }
+
+      .car-nose {
+        left: 0;
+        top: 48%;
+        width: 38%;
+        height: 18%;
+        clip-path: polygon(0 82%, 16% 36%, 100% 0, 92% 100%, 12% 100%);
+        background:
+          linear-gradient(120deg, rgba(255,255,255,0.18), transparent 30%),
+          linear-gradient(90deg, #ff1f2d, #d71920);
+        box-shadow: 0 18px 32px rgba(226, 59, 39, 0.32);
+      }
+
+      .car-cockpit {
+        left: 47%;
+        top: 21%;
+        width: 19%;
+        height: 25%;
+        border-radius: 68% 68% 30% 30%;
+        background:
+          radial-gradient(circle at 50% 34%, rgba(255,255,255,0.28), transparent 34%),
+          linear-gradient(145deg, #f03b37, #99171a);
+        border: 1px solid rgba(0,0,0,0.45);
+      }
+
+      .driver {
+        left: 52%;
+        top: 23%;
+        width: 7.5%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 42% 25%, rgba(255,255,255,0.42), transparent 22%),
+          repeating-linear-gradient(45deg, #2f3137 0 7px, #08090b 7px 13px);
+        border: 3px solid #1b1d22;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+      }
+
+      .halo {
+        left: 42%;
+        top: 27%;
+        width: 29%;
+        height: 20%;
+        border: 9px solid #d5d0c4;
+        border-bottom: 0;
+        border-radius: 50% 50% 0 0;
+        filter: drop-shadow(0 4px 4px rgba(0,0,0,0.28));
+      }
+
+      .halo::before,
+      .halo::after {
+        content: "";
+        width: 8px;
+        height: 42%;
+        top: 54%;
+        background: #d5d0c4;
+        border-radius: 6px;
+      }
+
+      .halo::before {
+        left: 16%;
+        transform: rotate(18deg);
+      }
+
+      .halo::after {
+        right: 16%;
+        transform: rotate(-18deg);
+      }
+
+      .front-wing {
+        left: 0;
+        top: 66%;
+        width: 31%;
+        height: 11%;
+        border-radius: 0 0 50% 50%;
+        background: linear-gradient(90deg, #fff8e9, #d9d1c0);
+        transform: skewX(-20deg);
+        box-shadow: 0 8px 20px rgba(255,248,233,0.16);
+      }
+
+      .front-wing::before,
+      .front-wing::after {
+        content: "";
+        width: 10%;
+        height: 70%;
+        top: -42%;
+        background: #e8e0cf;
+        border: 1px solid rgba(0,0,0,0.28);
+      }
+
+      .front-wing::before {
+        left: 8%;
+        transform: rotate(-16deg);
+      }
+
+      .front-wing::after {
+        right: 2%;
+        transform: rotate(9deg);
+      }
+
+      .side-pod {
+        left: 53%;
+        top: 54%;
+        width: 23%;
+        height: 23%;
+        border-radius: 18% 10% 22% 14%;
+        background: linear-gradient(90deg, #c81920, #ff2730);
+        box-shadow: inset -16px 0 0 rgba(0,0,0,0.16);
+      }
+
+      .logo-decal {
+        left: 58%;
+        top: 58%;
+        width: 13%;
+        height: 11%;
+        border-radius: 3px;
+        background: #fff8e9;
+        color: #101010;
+        font-size: clamp(7px, 0.72vw, 10px);
+        font-weight: 950;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: skewX(-8deg);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+      }
+
+      .car-tail {
+        right: 6%;
+        top: 30%;
+        width: 16%;
+        height: 42%;
+        background: linear-gradient(90deg, #c51b20, #ff2730);
+        transform: skewY(-4deg);
+      }
+
+      .rear-wing {
+        right: 0;
+        top: 21%;
+        width: 24%;
+        height: 10%;
+        background: linear-gradient(90deg, #ff2830, #c31a1f);
+        border-radius: 18% 18% 8% 8%;
+      }
+
+      .rear-wing::before,
+      .rear-wing::after {
+        content: "";
+        top: 82%;
+        width: 8%;
+        height: 95%;
+        background: #ac171b;
+      }
+
+      .rear-wing::before {
+        left: 18%;
+      }
+
+      .rear-wing::after {
+        right: 12%;
+      }
+
+      .wheel {
+        position: absolute;
+        width: 16%;
+        aspect-ratio: 1;
+        border: 9px solid #050505;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle, #171717 0 25%, #050505 27% 58%, #222 61% 67%, #050505 70% 100%);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+      }
+
+      .wheel.front {
+        left: 28%;
+        top: 60%;
+      }
+
+      .wheel.rear {
+        right: 10%;
+        top: 57%;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 4;
+        width: min(880px, calc(100% - 36px));
+        margin-left: clamp(18px, 6vw, 82px);
+        padding: 0;
+      }
+
+      .js .hero-content {
+        opacity: var(--intro-text-opacity, 0);
+        transform: translate3d(var(--intro-text-x, -44px), var(--intro-text-y, 20px), 0);
+        filter: blur(var(--intro-text-blur, 10px));
+        pointer-events: none;
+        transition: opacity 0.78s ease 0.28s, transform 0.78s cubic-bezier(0.2, 0.9, 0.14, 1) 0.28s, filter 0.78s ease 0.28s;
+      }
+
+      .kicker {
+        margin: 0 0 18px;
+        color: var(--red);
+        font-size: clamp(14px, 1.22vw, 18px);
+        font-weight: 950;
+        line-height: 1.05;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .hero h1 {
+        margin: 0;
+        text-shadow: 0 28px 54px rgba(0, 0, 0, 0.42);
+        font-size: clamp(50px, 6.8vw, 94px);
+        line-height: 0.9;
+      }
+
+      .hero h1 small {
+        display: block;
+        margin-top: 16px;
+        color: var(--gold);
+        font-size: clamp(20px, 2.4vw, 31px);
+        line-height: 1.1;
+      }
+
+      .hero-copy {
+        width: min(620px, 100%);
+        margin: 30px 0 0;
+        color: rgba(255, 255, 255, 0.84);
+        font-size: clamp(17px, 2vw, 22px);
+        line-height: 1.75;
+        font-weight: 800;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 34px;
+      }
+
+      .hero-status {
+        position: relative;
+        z-index: 4;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(320px, 1.08fr);
+        width: min(980px, calc(100% - 36px));
+        margin: 34px clamp(18px, 6vw, 82px) 0 auto;
+        border-top: 2px solid var(--red);
+        background: rgba(6, 8, 13, 0.82);
+        backdrop-filter: blur(14px);
+      }
+
+      .js .hero-status {
+        opacity: var(--intro-text-opacity, 0);
+        transform: translateY(var(--intro-status-y, 32px));
+        pointer-events: none;
+        transition: opacity 0.78s ease 0.42s, transform 0.78s cubic-bezier(0.2, 0.9, 0.14, 1) 0.42s;
+      }
+
+      .js .hero.hero-revealed .hero-content,
+      .js .hero.hero-revealed .hero-status {
+        pointer-events: auto;
+      }
+
+      .scroll-cue {
+        position: absolute;
+        left: 50%;
+        bottom: clamp(26px, 5vh, 54px);
+        z-index: 4;
+        display: grid;
+        gap: 10px;
+        justify-items: center;
+        padding: 10px 14px;
+        color: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(244, 189, 63, 0.36);
+        background: rgba(6, 8, 13, 0.42);
+        backdrop-filter: blur(10px);
+        font-size: clamp(15px, 1.45vw, 20px);
+        font-weight: 950;
+        text-transform: uppercase;
+        letter-spacing: 0;
+        opacity: var(--cue-opacity, 1);
+        transform: translateX(-50%);
+        transition: opacity 0.42s ease;
+      }
+
+      .hero-page-indicator {
+        position: absolute;
+        right: clamp(18px, 4vw, 48px);
+        top: 50%;
+        z-index: 4;
+        display: grid;
+        gap: 11px;
+        transform: translateY(-50%);
+      }
+
+      .hero-page-indicator span {
+        width: 42px;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.22);
+      }
+
+      .hero-page-indicator span:first-child {
+        background: linear-gradient(90deg, var(--gold) var(--page-one-active, 100%), rgba(255, 255, 255, 0.22) 0);
+      }
+
+      .hero-page-indicator span:last-child {
+        background: linear-gradient(90deg, var(--red) var(--page-two-active, 0%), rgba(255, 255, 255, 0.22) 0);
+      }
+
+      .scroll-cue::after {
+        content: "";
+        width: 2px;
+        height: 42px;
+        background: linear-gradient(180deg, var(--gold), transparent);
+        animation: cuePulse 1.3s ease-in-out infinite;
+      }
+
+      .hero-status div {
+        padding: 18px;
+        border-right: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .hero-status div:last-child {
+        border-right: 0;
+      }
+
+      .hero-status span {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--gold);
+        font-size: 11px;
+        font-weight: 950;
+      }
+
+      .hero-status strong {
+        display: block;
+        font-size: 17px;
+        line-height: 1.15;
+        overflow-wrap: normal;
+      }
+
+      .hero-status div:last-child strong {
+        font-size: clamp(15px, 1.45vw, 18px);
+        white-space: nowrap;
+      }
+
+      section {
+        scroll-margin-top: 80px;
+      }
+
+      .section {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(58px, 8vw, 100px) clamp(18px, 6vw, 82px);
+        background: var(--black);
+        --light-a-x: 78%;
+        --light-a-y: 34%;
+        --light-a-size: 520px;
+        --light-a-color: rgba(244, 189, 63, 0.13);
+        --light-b-x: 18%;
+        --light-b-y: 58%;
+        --light-b-size: 560px;
+        --light-b-color: rgba(226, 59, 39, 0.1);
+      }
+
+      .section::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(circle at var(--light-a-x) var(--light-a-y), var(--light-a-color), transparent var(--light-a-size)),
+          radial-gradient(circle at var(--light-b-x) var(--light-b-y), var(--light-b-color), transparent var(--light-b-size));
+        opacity: 0.96;
+      }
+
+      .section > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .section h2 {
+        margin: 0;
+        color: var(--white);
+        font-weight: 900;
+        font-size: clamp(36px, 4.2vw, 60px);
+        line-height: 1.08;
+      }
+
+      .section p {
+        color: rgba(255, 255, 255, 0.72);
+        font-size: clamp(16px, 1.22vw, 19px);
+        line-height: 1.82;
+        font-weight: 650;
+      }
+
+      .about {
+        display: grid;
+        grid-template-columns: minmax(260px, 0.75fr) minmax(0, 1.25fr);
+        gap: clamp(34px, 7vw, 86px);
+        align-items: center;
+        background: var(--black);
+        --light-a-x: 20%;
+        --light-a-y: 48%;
+        --light-a-size: 480px;
+        --light-a-color: rgba(244, 189, 63, 0.2);
+        --light-b-x: 78%;
+        --light-b-y: 42%;
+        --light-b-size: 620px;
+        --light-b-color: rgba(226, 59, 39, 0.11);
+      }
+
+      .about-logo {
+        display: flex;
+        justify-content: center;
+      }
+
+      .about-logo img {
+        width: min(350px, 100%);
+        filter: drop-shadow(0 26px 52px rgba(0, 0, 0, 0.42));
+      }
+
+      .status-grid,
+      .support-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 34px;
+      }
+
+      .card {
+        min-height: 170px;
+        padding: 26px;
+        border: 1px solid rgba(255, 255, 255, 0.11);
+        border-top: 4px solid var(--red);
+        color: var(--white);
+        background:
+          linear-gradient(140deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.045)),
+          rgba(255, 255, 255, 0.05);
+        box-shadow: none;
+        transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 28px 66px rgba(0, 0, 0, 0.22);
+      }
+
+      .card:nth-child(2) {
+        border-top-color: var(--gold);
+      }
+
+      .card:nth-child(3) {
+        border-top-color: var(--green);
+      }
+
+      .card h3 {
+        margin: 0 0 14px;
+        font-size: clamp(22px, 1.55vw, 26px);
+      }
+
+      .dark {
+        color: var(--white);
+        background: var(--black);
+        --light-a-x: 18%;
+        --light-a-y: 42%;
+        --light-a-color: rgba(226, 59, 39, 0.16);
+        --light-b-x: 84%;
+        --light-b-y: 54%;
+        --light-b-color: rgba(244, 189, 63, 0.11);
+      }
+
+      .dark h2 {
+        color: var(--white);
+      }
+
+      .dark p,
+      .dark .card p {
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .dark .card {
+        color: var(--white);
+        background:
+          linear-gradient(140deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.045)),
+          rgba(255, 255, 255, 0.05);
+        box-shadow: none;
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 0.85fr);
+        gap: clamp(32px, 6vw, 78px);
+        align-items: center;
+        background: var(--black);
+        --light-a-x: 78%;
+        --light-a-y: 52%;
+        --light-a-color: rgba(244, 189, 63, 0.16);
+        --light-b-x: 18%;
+        --light-b-y: 40%;
+        --light-b-color: rgba(226, 59, 39, 0.1);
+      }
+
+      .numbers {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .number {
+        position: relative;
+        overflow: hidden;
+        min-height: 132px;
+        padding: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--white);
+        background:
+          linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.045)),
+          rgba(255, 255, 255, 0.055);
+      }
+
+      .number::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(115deg, transparent 0 45%, rgba(244, 189, 63, 0.18) 46%, transparent 55%);
+        transform: translateX(-120%);
+        transition: transform 0.7s ease;
+      }
+
+      .number:hover::after {
+        transform: translateX(120%);
+      }
+
+      .number span {
+        display: block;
+        color: var(--gold);
+        font-size: clamp(40px, 3.2vw, 52px);
+        font-weight: 950;
+      }
+
+      .challenge-list {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 36px;
+      }
+
+      #support {
+        --light-a-x: 72%;
+        --light-a-y: 56%;
+        --light-a-color: rgba(244, 189, 63, 0.14);
+        --light-b-x: 20%;
+        --light-b-y: 32%;
+        --light-b-color: rgba(226, 59, 39, 0.12);
+      }
+
+      .world {
+        position: relative;
+        overflow: hidden;
+        background: var(--black);
+        --light-a-x: 78%;
+        --light-a-y: 42%;
+        --light-a-color: rgba(244, 189, 63, 0.16);
+        --light-b-x: 18%;
+        --light-b-y: 26%;
+        --light-b-color: rgba(226, 59, 39, 0.17);
+      }
+
+      .world::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background:
+          repeating-linear-gradient(104deg, transparent 0 82px, rgba(255, 255, 255, 0.045) 84px, transparent 86px),
+          linear-gradient(90deg, transparent 0 48%, rgba(226, 59, 39, 0.34) 48.2% 48.55%, transparent 48.8%);
+        opacity: 0.62;
+      }
+
+      .world-layout {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: minmax(0, 0.88fr) minmax(360px, 1.12fr);
+        gap: clamp(28px, 5vw, 64px);
+        align-items: center;
+      }
+
+      .world-copy h2 {
+        color: var(--white);
+      }
+
+      .world-copy p:not(.kicker) {
+        color: rgba(255, 255, 255, 0.76);
+      }
+
+      .world-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin: 28px 0;
+      }
+
+      .world-stat {
+        padding: 16px;
+        border-top: 3px solid var(--red);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .world-stat strong {
+        display: block;
+        color: var(--gold);
+        font-size: clamp(24px, 3vw, 42px);
+        line-height: 1;
+      }
+
+      .world-stat span {
+        display: block;
+        margin-top: 8px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 12px;
+        font-weight: 850;
+      }
+
+      .video-panel {
+        position: relative;
+        padding: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04));
+        box-shadow: 0 34px 80px rgba(0, 0, 0, 0.34);
+      }
+
+      .video-panel::before,
+      .video-panel::after {
+        content: "";
+        position: absolute;
+        width: 78px;
+        height: 4px;
+        background: var(--red);
+      }
+
+      .video-panel::before {
+        left: 10px;
+        top: -4px;
+      }
+
+      .video-panel::after {
+        right: 10px;
+        bottom: -4px;
+        background: var(--gold);
+      }
+
+      .video-shell {
+        position: relative;
+        display: block;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        color: var(--white);
+        background: var(--black);
+      }
+
+      .video-thumb {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.02);
+        transition: transform 0.42s ease;
+      }
+
+      .video-shell::before {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(6, 8, 13, 0.82), rgba(6, 8, 13, 0.18) 52%, rgba(6, 8, 13, 0.74)),
+          linear-gradient(0deg, rgba(6, 8, 13, 0.82), transparent 54%),
+          linear-gradient(112deg, transparent 0 46%, rgba(255, 255, 255, 0.14) 46.2% 46.6%, transparent 46.9%),
+          repeating-linear-gradient(112deg, transparent 0 40px, rgba(255, 255, 255, 0.055) 42px, transparent 44px);
+      }
+
+      .video-shell::after {
+        content: "PLAY";
+        position: absolute;
+        z-index: 2;
+        right: 22px;
+        top: 20px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 12px;
+        font-weight: 950;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .video-link-content {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        min-height: 100%;
+        align-content: center;
+        gap: 18px;
+        padding: clamp(22px, 4vw, 42px);
+      }
+
+      .video-kicker {
+        color: var(--gold);
+        font-size: 12px;
+        font-weight: 950;
+        text-transform: uppercase;
+      }
+
+      .video-title {
+        max-width: 560px;
+        text-shadow: 0 18px 38px rgba(0, 0, 0, 0.55);
+        font-size: clamp(28px, 4vw, 52px);
+        font-weight: 950;
+        line-height: 1;
+      }
+
+      .play-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 74px;
+        aspect-ratio: 1;
+        color: var(--black);
+        background: var(--gold);
+        clip-path: polygon(0 0, 100% 50%, 0 100%);
+        transform: translateX(8px);
+        filter: drop-shadow(0 18px 30px rgba(244, 189, 63, 0.3));
+      }
+
+      .video-shell:hover .play-button {
+        transform: translateX(12px) scale(1.08);
+      }
+
+      .video-shell:hover .video-thumb {
+        transform: scale(1.08);
+      }
+
+      .video-caption {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        margin-top: 12px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .race-strip {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(120px, 1fr));
+        margin-top: 56px;
+        border-top: 1px solid rgba(255, 255, 255, 0.16);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+      }
+
+      .race-strip div {
+        min-height: 84px;
+        padding: 16px;
+        border-right: 1px solid rgba(255, 255, 255, 0.12);
+        color: var(--white);
+        background: rgba(6, 8, 13, 0.54);
+      }
+
+      .race-strip div:last-child {
+        border-right: 0;
+      }
+
+      .race-strip span {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--gold);
+        font-size: 11px;
+        font-weight: 950;
+      }
+
+      .countdown {
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+        gap: clamp(28px, 6vw, 78px);
+        align-items: center;
+        color: var(--white);
+        background: var(--black);
+        --light-a-x: 82%;
+        --light-a-y: 44%;
+        --light-a-color: rgba(244, 189, 63, 0.19);
+        --light-b-x: 18%;
+        --light-b-y: 46%;
+        --light-b-color: rgba(226, 59, 39, 0.12);
+      }
+
+      .countdown::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background:
+          repeating-linear-gradient(112deg, transparent 0 58px, rgba(255, 255, 255, 0.045) 60px, transparent 62px),
+          linear-gradient(90deg, transparent 0 52%, rgba(226, 59, 39, 0.32) 52.2% 52.55%, transparent 52.9%);
+        opacity: 0.66;
+      }
+
+      .countdown > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .countdown h2 {
+        color: var(--white);
+      }
+
+      .countdown p {
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .countdown-board {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .countdown-unit {
+        min-height: 138px;
+        padding: 22px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 4px solid var(--red);
+        background:
+          linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.045)),
+          rgba(255, 255, 255, 0.06);
+        box-shadow: 0 28px 62px rgba(0, 0, 0, 0.2);
+      }
+
+      .countdown-unit:nth-child(2) {
+        border-top-color: var(--gold);
+      }
+
+      .countdown-unit strong {
+        display: block;
+        color: var(--gold);
+        font-family: "Oswald", "Noto Sans JP", system-ui, sans-serif;
+        font-size: clamp(44px, 6vw, 78px);
+        line-height: 0.9;
+      }
+
+      .countdown-unit span {
+        display: block;
+        margin-top: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 12px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .countdown-date {
+        display: inline-flex;
+        margin-top: 22px;
+        padding: 10px 14px;
+        color: var(--gold);
+        border: 1px solid rgba(244, 189, 63, 0.38);
+        font-family: "Oswald", "Noto Sans JP", system-ui, sans-serif;
+        font-weight: 900;
+      }
+
+      .plans {
+        background: var(--black);
+        color: var(--white);
+        --light-a-x: 16%;
+        --light-a-y: 20%;
+        --light-a-color: rgba(244, 189, 63, 0.13);
+        --light-b-x: 88%;
+        --light-b-y: 48%;
+        --light-b-color: rgba(226, 59, 39, 0.14);
+      }
+
+      .plans h2 {
+        color: var(--white);
+      }
+
+      .plan-table {
+        margin-top: 34px;
+        border-top: 2px solid var(--red);
+      }
+
+      .plan-row {
+        display: grid;
+        grid-template-columns: 1.2fr 0.65fr 2.1fr;
+        gap: 18px;
+        align-items: center;
+        min-height: 70px;
+        padding: 19px 22px;
+        border-left: 1px solid rgba(255, 255, 255, 0.08);
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        background:
+          linear-gradient(115deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.035)),
+          rgba(255, 255, 255, 0.045);
+      }
+
+      .plan-row strong {
+        font-size: clamp(19px, 1.45vw, 23px);
+      }
+
+      .plan-row span {
+        color: var(--gold);
+        font-size: clamp(16px, 1.16vw, 19px);
+        font-weight: 950;
+      }
+
+      .plan-row p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: clamp(15px, 1.08vw, 17px);
+      }
+
+      .plan-row p span {
+        display: block;
+        color: rgba(255, 255, 255, 0.86);
+        font-weight: 850;
+      }
+
+      .plan-row p span + span {
+        margin-top: 6px;
+      }
+
+      .featured {
+        border-left: 5px solid var(--red);
+        background: rgba(226, 59, 39, 0.16);
+      }
+
+      .contact {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(430px, 0.64fr);
+        gap: clamp(28px, 6vw, 76px);
+        align-items: center;
+        --light-a-x: 78%;
+        --light-a-y: 48%;
+        --light-a-color: rgba(244, 189, 63, 0.2);
+        --light-b-x: 18%;
+        --light-b-y: 50%;
+        --light-b-color: rgba(226, 59, 39, 0.12);
+      }
+
+      .mail-card {
+        display: block;
+        padding: 30px;
+        color: var(--white);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-top: 4px solid var(--gold);
+        background:
+          linear-gradient(140deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.045)),
+          rgba(255, 255, 255, 0.065);
+      }
+
+      .mail-card span {
+        display: block;
+        margin-bottom: 12px;
+        color: var(--red);
+        font-weight: 950;
+        text-transform: uppercase;
+      }
+
+      .mail-card strong {
+        display: block;
+        overflow-wrap: normal;
+        white-space: nowrap;
+        font-size: clamp(22px, 1.85vw, 30px);
+        line-height: 1;
+      }
+
+      html[lang="en"] .hero h1 {
+        font-size: clamp(54px, 7.1vw, 98px);
+      }
+
+      html[lang="en"] .hero h1 small {
+        font-size: clamp(22px, 2.55vw, 34px);
+      }
+
+      html[lang="en"] .kicker {
+        font-size: clamp(15px, 1.35vw, 20px);
+      }
+
+      html[lang="en"] .section h2 {
+        font-size: clamp(38px, 4.35vw, 64px);
+      }
+
+      html[lang="en"] .section p {
+        font-size: clamp(16.5px, 1.26vw, 19.5px);
+      }
+
+      html[lang="en"] .card h3 {
+        font-size: clamp(23px, 1.65vw, 28px);
+      }
+
+      html[lang="en"] .plan-row strong {
+        font-size: clamp(20px, 1.55vw, 24px);
+      }
+
+      html[lang="en"] .plan-row p {
+        font-size: clamp(15.5px, 1.12vw, 18px);
+      }
+
+      html[lang="en"] .mail-card strong {
+        font-size: clamp(23px, 1.95vw, 32px);
+      }
+
+      @media (min-width: 921px) {
+        html[lang="en"] .nav {
+          font-size: clamp(16px, 1.18vw, 19px);
+        }
+      }
+
+      .js [data-reveal] {
+        opacity: 0;
+        transform: translateY(32px);
+        transition: opacity 0.75s ease, transform 0.75s ease;
+      }
+
+      .js [data-reveal].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      [data-reveal-delay="1"] { transition-delay: 0.08s; }
+      [data-reveal-delay="2"] { transition-delay: 0.16s; }
+      [data-reveal-delay="3"] { transition-delay: 0.24s; }
+      [data-reveal-delay="4"] { transition-delay: 0.32s; }
+
+      footer {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 24px;
+        align-items: center;
+        padding: 30px clamp(18px, 6vw, 82px);
+        color: rgba(255, 255, 255, 0.58);
+        background: var(--black);
+      }
+
+      footer img {
+        width: 140px;
+      }
+
+      footer p {
+        margin: 0;
+        font-size: 11px;
+        line-height: 1.7;
+      }
+
+      @keyframes float {
+        0%, 100% { transform: rotateX(58deg) rotateZ(-12deg) translateY(0); }
+        50% { transform: rotateX(58deg) rotateZ(-12deg) translateY(-12px); }
+      }
+
+      @keyframes imageFloat {
+        0%, 100% {
+          transform:
+            translate3d(var(--car-scroll-x, 0px), var(--car-scroll-y, 0px), 0)
+            rotate(calc(-6deg + var(--car-rotate, 0deg)))
+            scale(var(--car-scale, 1))
+            translateY(0);
+        }
+        50% {
+          transform:
+            translate3d(var(--car-scroll-x, 0px), var(--car-scroll-y, 0px), 0)
+            rotate(calc(-6deg + var(--car-rotate, 0deg)))
+            scale(var(--car-scale, 1))
+            translateY(-12px);
+        }
+      }
+
+      @keyframes cuePulse {
+        0%, 100% { transform: scaleY(0.55); opacity: 0.45; }
+        50% { transform: scaleY(1); opacity: 1; }
+      }
+
+      @media (max-width: 920px) {
+        .site-header {
+          grid-template-columns: auto 1fr auto;
+        }
+
+        .nav {
+          display: none;
+        }
+
+        .language-switch {
+          justify-self: end;
+        }
+
+        .logo-link img {
+          width: 116px;
+        }
+
+        .hero {
+          height: 178vh;
+          min-height: 1080px;
+          --stage-width: min(620px, 128vw);
+          --stage-top: 27vh;
+        }
+
+        .hero.hero-revealed {
+          --stage-width: min(560px, 116vw);
+          --stage-top: 18vh;
+          --stage-scroll-x: min(38px, 8vw);
+          --stage-scroll-y: -10px;
+          --car-scroll-x: min(22px, 5vw);
+          --car-scroll-y: -8px;
+          --car-scale: 0.52;
+        }
+
+        .hero-content {
+          width: auto;
+          margin: 0 18px;
+          padding: 0;
+        }
+
+        .car-stage {
+          height: 330px;
+          max-width: 120vw;
+        }
+
+        .hero-status {
+          grid-template-columns: 1fr;
+          margin: 34px 18px 0;
+          width: auto;
+        }
+
+        .hero-status div {
+          border-right: 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .about,
+        .split,
+        .contact,
+        .world-layout,
+        .countdown {
+          grid-template-columns: 1fr;
+        }
+
+        .status-grid,
+        .support-grid,
+        .challenge-list,
+        .world-stats {
+          grid-template-columns: 1fr;
+        }
+
+        .race-strip {
+          grid-template-columns: 1fr;
+        }
+
+        .race-strip div {
+          border-right: 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .countdown-board {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 560px) {
+        .site-header {
+          gap: 10px;
+        }
+
+        .mail-button {
+          min-height: 38px;
+          padding: 0 12px;
+          font-size: 12px;
+        }
+
+        .language-switch button {
+          min-width: 36px;
+          min-height: 32px;
+          padding: 0 8px;
+          font-size: 11px;
+        }
+
+        .hero h1 {
+          font-size: 48px;
+        }
+
+        html[lang="en"] .hero h1 {
+          font-size: 46px;
+        }
+
+        html[lang="en"] .hero h1 small {
+          font-size: 21px;
+        }
+
+        html[lang="en"] .section h2 {
+          font-size: clamp(34px, 9vw, 42px);
+        }
+
+        html[lang="en"] .mail-card strong {
+          font-size: clamp(20px, 5vw, 25px);
+        }
+
+        .actions {
+          display: grid;
+        }
+
+        .numbers {
+          grid-template-columns: 1fr;
+        }
+
+        .plan-row {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .countdown-board {
+          grid-template-columns: 1fr;
+        }
+
+        footer {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo-link" href="#top" aria-label="AMT Racing">
+        <img src="assets/amt_logo_horizontal_cropped.png" alt="AMT Racing" />
+      </a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#about">チーム</a>
+        <a href="#stem">競技</a>
+        <a href="#world">世界大会</a>
+        <a href="#challenge">活動</a>
+        <a href="#support">協賛</a>
+      </nav>
+      <div class="language-switch" aria-label="Language switch">
+        <button type="button" class="is-active" data-lang="ja" aria-pressed="true">JP</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="mail-button" href="mailto:amaterasuracing@gmail.com">お問い合わせ</a>
+    </header>
+
+    <main id="top">
+      <section class="hero is-scroll-driven">
+        <div class="hero-sticky">
+          <div class="hero-motion-layer">
+            <div class="speed-lines"></div>
+            <div class="hero-glow"></div>
+            <div class="car-stage" aria-hidden="true">
+              <img class="cad-car-image" src="assets/cad-car-orange-cutout.png" alt="" />
+            </div>
+            <div class="hero-page-indicator" aria-hidden="true">
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          <div class="hero-page hero-intro-page">
+            <div class="scroll-cue" aria-hidden="true">
+              Scroll / Space / Enter
+            </div>
+          </div>
+
+          <div class="hero-page hero-cover-page">
+            <div class="hero-content">
+              <p class="kicker">Official Website / STEM Racing Team</p>
+              <h1>
+                <span class="hero-title">0から、世界へ。</span>
+                <small>AMT Racing / アマテラス レーシング</small>
+              </h1>
+              <p class="hero-copy">
+                STEM Racingに挑戦しながら、日本に新しい教育の形をつくろうとしている高校生チームです。
+                まだ完成されたチームではないからこそ、0から世界へ向かう始まりを、
+                最初から共に創ってくださる企業を探しています。
+              </p>
+              <div class="actions">
+                <a class="button primary" href="mailto:amaterasuracing@gmail.com">共に走るパートナーになる</a>
+                <a class="button secondary" href="#stem">STEM Racingを知る</a>
+                <a class="button video" href="#countdown">全国大会まで</a>
+              </div>
+            </div>
+
+            <div class="hero-status">
+              <div>
+                <span>Status</span>
+                <strong>0から世界へ挑戦中</strong>
+              </div>
+              <div>
+                <span>Field</span>
+                <strong>Design × Build × Business</strong>
+              </div>
+              <div>
+                <span>Email</span>
+                <strong>amaterasuracing@gmail.com</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section countdown" id="countdown">
+        <div data-reveal>
+          <p class="kicker">Road to Japan National Finals</p>
+          <h2>0から始まった挑戦が、最初の舞台へ向かっています。</h2>
+          <p>
+            国内大会までに、車両開発、スポンサー活動、ブランドづくりを同時に進めています。
+            このカウントダウンは、0から世界へ向かう最初の一歩までの時間です。
+          </p>
+          <div class="countdown-date">JUNE 12-14, 2026 / TOKYO INNOVATION BASE</div>
+        </div>
+        <div class="countdown-board" data-countdown data-reveal data-reveal-delay="1">
+          <div class="countdown-unit"><strong data-countdown-days>00</strong><span>Days</span></div>
+          <div class="countdown-unit"><strong data-countdown-hours>00</strong><span>Hours</span></div>
+          <div class="countdown-unit"><strong data-countdown-minutes>00</strong><span>Minutes</span></div>
+          <div class="countdown-unit"><strong data-countdown-seconds>00</strong><span>Seconds</span></div>
+        </div>
+      </section>
+
+      <section class="section about" id="about">
+        <div class="about-logo" data-reveal>
+          <img src="assets/amt_logo_vertical_cropped.png" alt="AMT Racing logo" />
+        </div>
+        <div data-reveal data-reveal-delay="1">
+          <p class="kicker">About AMT Racing</p>
+          <h2>レースチームである前に、新しい教育の形を実践するプロジェクトです。</h2>
+          <p>
+            エンジニアリング、ファイナンス、コミュニケーション、チームビルディング。
+            STEM Racingを通じて、教室だけでは得られない学びを社会の中で実践します。
+            AMTには、Amaterasuのように未来を照らす存在でありたいという想いを込めています。
+          </p>
+          <div class="status-grid">
+            <article class="card" data-reveal>
+              <h3>未来を照らす名前</h3>
+              <p>Amaterasuの名を背負い、日本発の挑戦として世界を目指します。</p>
+            </article>
+            <article class="card" data-reveal data-reveal-delay="1">
+              <h3>実社会で学ぶ</h3>
+              <p>設計、資金調達、発信、進行管理まで、自分たちで動きながら学びます。</p>
+            </article>
+            <article class="card" data-reveal data-reveal-delay="2">
+              <h3>始まりから共に創る</h3>
+              <p>完成後ではなく、0から形になる過程を企業と共有できます。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section split" id="stem">
+        <div data-reveal>
+          <p class="kicker">What is STEM Racing?</p>
+          <h2>レースを通じて、実社会で必要な力を学ぶ。</h2>
+          <p>
+            STEM Racingでは、車を速くする技術だけでは勝てません。設計、資金調達、
+            スポンサー営業、ブランドづくり、プレゼンテーションまで学生が担います。
+            AMT Racingはこの競技を通じて、日本に新しい教育の形をつくろうとしています。
+          </p>
+        </div>
+        <div class="numbers">
+          <div class="number" data-reveal><span>STEM</span><p>CAD、空力、製造、テストで技術を学ぶ</p></div>
+          <div class="number" data-reveal data-reveal-delay="1"><span>Finance</span><p>予算管理、資金調達、協賛提案を学ぶ</p></div>
+          <div class="number" data-reveal data-reveal-delay="2"><span>Outreach</span><p>LP、SNS、資料、面談で伝える力を学ぶ</p></div>
+          <div class="number" data-reveal data-reveal-delay="3"><span>Project</span><p>役割分担、進捗管理、意思決定を学ぶ</p></div>
+        </div>
+      </section>
+
+      <section class="section world" id="world">
+        <div class="world-layout">
+          <div class="world-copy" data-reveal>
+            <p class="kicker">World Stage</p>
+            <h2>国内大会で終わらせない。0から始まったチームを世界へ。</h2>
+            <p>
+              目標は、国内大会の先にある国際大会です。技術、ブランド、スポンサー戦略で世界と戦える
+              チームを、自分たちでつくりたい。私たちは、世界に行きたいだけではありません。
+              世界と戦えるチームをつくりたい。
+            </p>
+            <div class="world-stats">
+              <div class="world-stat" data-reveal><strong>400+</strong><span>2025年世界大会参加者</span></div>
+              <div class="world-stat" data-reveal data-reveal-delay="1"><strong>30+</strong><span>参加国・地域</span></div>
+              <div class="world-stat" data-reveal data-reveal-delay="2"><strong>1秒台</strong><span>20mを走る車体開発</span></div>
+            </div>
+            <a class="button video" href="https://www.youtube.com/playlist?list=PLBGlZc-MbXc16J6akKfd0Bp2J2CgRddMg" target="_blank" rel="noopener">YouTubeで見る</a>
+          </div>
+          <div class="video-panel" data-reveal data-reveal-delay="1">
+            <a class="video-shell" href="https://www.youtube.com/playlist?list=PLBGlZc-MbXc16J6akKfd0Bp2J2CgRddMg" target="_blank" rel="noopener" aria-label="STEM Racing World Finals 2025のYouTubeプレイリストを開く">
+              <img class="video-thumb" src="assets/stem-racing-world-finals-thumbnail.jpg" alt="STEM Racing World Finals 2025 racing scene" />
+              <span class="video-link-content">
+                <span class="video-kicker">Watch on YouTube</span>
+                <span class="video-title">STEM Racing World Finals 2025</span>
+                <span class="play-button" aria-hidden="true"></span>
+              </span>
+            </a>
+            <div class="video-caption">
+              <span>Aramco STEM Racing World Finals 2025</span>
+              <span>Click to open</span>
+            </div>
+          </div>
+        </div>
+        <div class="race-strip" aria-label="STEM Racingで評価される領域">
+          <div data-reveal><span>01</span><strong>Engineering</strong></div>
+          <div data-reveal data-reveal-delay="1"><span>02</span><strong>Manufacturing</strong></div>
+          <div data-reveal data-reveal-delay="2"><span>03</span><strong>Branding</strong></div>
+          <div data-reveal data-reveal-delay="3"><span>04</span><strong>Presentation</strong></div>
+          <div data-reveal data-reveal-delay="4"><span>05</span><strong>Partnership</strong></div>
+        </div>
+      </section>
+
+      <section class="section dark" id="challenge">
+        <p class="kicker" data-reveal>Current Mission</p>
+        <h2 data-reveal data-reveal-delay="1">車両開発、ブランド設計、スポンサー活動を同時に進めています。</h2>
+        <div class="challenge-list">
+          <article class="card" data-reveal>
+            <h3>CAD / Aero</h3>
+            <p>CAD設計、空力改善、3Dモデル制作を進め、走れる車体へ磨き込みます。</p>
+          </article>
+          <article class="card" data-reveal data-reveal-delay="1">
+            <h3>Brand / Web</h3>
+            <p>LP、スポンサー資料、SNS発信で、チームの価値を伝える土台を作ります。</p>
+          </article>
+          <article class="card" data-reveal data-reveal-delay="2">
+            <h3>Sponsor Work</h3>
+            <p>企業への協賛提案と面談準備を、自分たちの言葉で進めます。</p>
+          </article>
+          <article class="card" data-reveal data-reveal-delay="3">
+            <h3>Finals Ready</h3>
+            <p>国内大会と国際大会を見据え、世界へ向かう体制を整えます。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="support">
+        <p class="kicker" data-reveal>Support AMT Racing</p>
+        <h2 data-reveal data-reveal-delay="1">支援は、次世代の教育モデルへの投資になる。</h2>
+        <p data-reveal data-reveal-delay="2">
+          御社が支援するのは、完成された結果ではなく、0から学び、挑み、世界へ向かう過程そのものです。
+          私たちは、共に走ってくださる企業を探しています。
+        </p>
+        <div class="support-grid">
+          <article class="card" data-reveal>
+            <h3>若者の挑戦を支える企業へ</h3>
+            <p>高校生の挑戦を後押しする企業姿勢を発信できます。</p>
+          </article>
+          <article class="card" data-reveal data-reveal-delay="1">
+            <h3>新しい教育の形</h3>
+            <p>技術、金融、発信、チーム運営を横断して学ぶ実践に関われます。</p>
+          </article>
+          <article class="card" data-reveal data-reveal-delay="2">
+            <h3>0から世界への物語</h3>
+            <p>完成後ではなく、始まりから関わる価値を共有できます。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section plans" id="plans">
+        <p class="kicker">Sponsorship Menu</p>
+        <h2>協賛プラン</h2>
+        <div class="plan-table">
+          <div class="plan-row">
+            <strong>Individual Partner</strong><span>要相談</span><p><span>提供内容：支援者一覧、活動報告書</span><span>価値：個人として始まりを支える</span></p>
+          </div>
+          <div class="plan-row">
+            <strong>Supporter</strong><span>5万円</span><p><span>提供内容：LP掲載、活動報告書、SNS紹介</span><span>価値：若者の挑戦を支える企業として発信</span></p>
+          </div>
+          <div class="plan-row">
+            <strong>Bronze Partner</strong><span>10万円</span><p><span>提供内容：LP・SNS・資料・活動報告に掲載</span><span>価値：STEM教育支援の姿勢を伝える</span></p>
+          </div>
+          <div class="plan-row">
+            <strong>Silver Partner</strong><span>20万円</span><p><span>提供内容：主要媒体で紹介、活動報告、企業紹介</span><span>価値：ものづくり・教育支援のストーリー化</span></p>
+          </div>
+          <div class="plan-row featured">
+            <strong>Gold Partner</strong><span>30万円</span><p><span>提供内容：車体・ウェア・LP・SNS等を個別相談</span><span>価値：始まりを支える主要パートナーとして発信</span></p>
+          </div>
+          <div class="plan-row">
+            <strong>Goods Partner</strong><span>現物提供</span><p><span>提供内容：Tシャツ、ステッカー、印刷、グッズ制作など</span><span>価値：大会準備を支える実践的パートナーに</span></p>
+          </div>
+          <div class="plan-row">
+            <strong>Technical Advisor</strong><span>技術支援</span><p><span>提供内容：CAD、CFD、加工、材料などの助言</span><span>価値：技術・ものづくり領域との親和性を発信</span></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section dark contact" id="contact">
+        <div>
+          <p class="kicker">Contact</p>
+          <h2>0から、世界へ。その始まりを、共に創ってください。</h2>
+          <p>
+            協賛のご相談、資料請求、面談のご希望など、お気軽にご連絡ください。
+            0から世界へ向かう過程を、共に創るパートナーをお待ちしています。
+          </p>
+        </div>
+        <a class="mail-card" href="mailto:amaterasuracing@gmail.com">
+          <span>協賛について相談する</span>
+          <strong>amaterasuracing@gmail.com</strong>
+        </a>
+      </section>
+    </main>
+
+    <footer>
+      <img src="assets/amt_logo_horizontal_cropped.png" alt="AMT Racing" />
+      <p>
+        STEM Racing、F1 in Schools、Formula 1等の名称・商標は各権利者に帰属します。
+        AMT Racingは教育活動としてSTEM Racingに挑戦する学生チームです。
+      </p>
+    </footer>
+    <script>
+      (() => {
+        const languageButtons = document.querySelectorAll("[data-lang]");
+        const metaDescription = document.querySelector('meta[name="description"]');
+        const translations = {
+          ja: {
+            title: "AMT Racing | アマテラス レーシング",
+            description: "AMT Racingは、STEM Racingを通じて日本に新しい教育の形をつくる高校生チームです。技術、資金調達、発信、チームづくりを実践し、0から世界へ挑みます。",
+            text: {
+              '.nav a[href="#about"]': "チーム",
+              '.nav a[href="#stem"]': "競技",
+              '.nav a[href="#world"]': "世界大会",
+              '.nav a[href="#challenge"]': "活動",
+              '.nav a[href="#support"]': "協賛",
+              ".mail-button": "お問い合わせ",
+              ".scroll-cue": "Scroll / Space / Enter",
+              ".hero-content .kicker": "Official Website / STEM Racing Team",
+              ".hero-title": "0から、世界へ。",
+              ".hero h1 small": "AMT Racing / アマテラス レーシング",
+              ".hero-copy": "STEM Racingに挑戦しながら、日本に新しい教育の形をつくろうとしている高校生チームです。まだ完成されたチームではないからこそ、0から世界へ向かう始まりを、最初から共に創ってくださる企業を探しています。",
+              ".actions .button.primary": "共に走るパートナーになる",
+              ".actions .button.secondary": "STEM Racingを知る",
+              ".actions .button.video": "全国大会まで",
+              ".hero-status div:nth-child(1) span": "Status",
+              ".hero-status div:nth-child(1) strong": "0から世界へ挑戦中",
+              ".hero-status div:nth-child(2) span": "Field",
+              ".hero-status div:nth-child(2) strong": "Design × Build × Business",
+              ".hero-status div:nth-child(3) span": "Email",
+              "#countdown .kicker": "Road to Japan National Finals",
+              "#countdown h2": "0から始まった挑戦が、最初の舞台へ向かっています。",
+              "#countdown > div:first-child > p:not(.kicker)": "国内大会までに、車両開発、スポンサー活動、ブランドづくりを同時に進めています。このカウントダウンは、0から世界へ向かう最初の一歩までの時間です。",
+              ".countdown-date": "JUNE 12-14, 2026 / TOKYO INNOVATION BASE",
+              "#about .kicker": "About AMT Racing",
+              "#about h2": "レースチームである前に、新しい教育の形を実践するプロジェクトです。",
+              "#about > div:nth-child(2) > p:not(.kicker)": "エンジニアリング、ファイナンス、コミュニケーション、チームビルディング。STEM Racingを通じて、教室だけでは得られない学びを社会の中で実践します。AMTには、Amaterasuのように未来を照らす存在でありたいという想いを込めています。",
+              ".status-grid .card:nth-child(1) h3": "未来を照らす名前",
+              ".status-grid .card:nth-child(1) p": "Amaterasuの名を背負い、日本発の挑戦として世界を目指します。",
+              ".status-grid .card:nth-child(2) h3": "実社会で学ぶ",
+              ".status-grid .card:nth-child(2) p": "設計、資金調達、発信、進行管理まで、自分たちで動きながら学びます。",
+              ".status-grid .card:nth-child(3) h3": "始まりから共に創る",
+              ".status-grid .card:nth-child(3) p": "完成後ではなく、0から形になる過程を企業と共有できます。",
+              "#stem .kicker": "What is STEM Racing?",
+              "#stem h2": "レースを通じて、実社会で必要な力を学ぶ。",
+              "#stem > div:first-child > p:not(.kicker)": "STEM Racingでは、車を速くする技術だけでは勝てません。設計、資金調達、スポンサー営業、ブランドづくり、プレゼンテーションまで学生が担います。AMT Racingはこの競技を通じて、日本に新しい教育の形をつくろうとしています。",
+              ".number:nth-child(1) span": "STEM",
+              ".number:nth-child(1) p": "CAD、空力、製造、テストで技術を学ぶ",
+              ".number:nth-child(2) span": "Finance",
+              ".number:nth-child(2) p": "予算管理、資金調達、協賛提案を学ぶ",
+              ".number:nth-child(3) span": "Outreach",
+              ".number:nth-child(3) p": "LP、SNS、資料、面談で伝える力を学ぶ",
+              ".number:nth-child(4) span": "Project",
+              ".number:nth-child(4) p": "役割分担、進捗管理、意思決定を学ぶ",
+              "#world .kicker": "World Stage",
+              ".world-copy h2": "国内大会で終わらせない。0から始まったチームを世界へ。",
+              ".world-copy > p:not(.kicker)": "目標は、国内大会の先にある国際大会です。技術、ブランド、スポンサー戦略で世界と戦えるチームを、自分たちでつくりたい。私たちは、世界に行きたいだけではありません。世界と戦えるチームをつくりたい。",
+              ".world-stat:nth-child(1) span": "2025年世界大会参加者",
+              ".world-stat:nth-child(2) span": "参加国・地域",
+              ".world-stat:nth-child(3) span": "20mを走る車体開発",
+              ".world-copy .button.video": "YouTubeで見る",
+              ".video-kicker": "Watch on YouTube",
+              ".video-title": "STEM Racing World Finals 2025",
+              ".video-caption span:nth-child(1)": "Aramco STEM Racing World Finals 2025",
+              ".video-caption span:nth-child(2)": "Click to open",
+              "#challenge .kicker": "Current Mission",
+              "#challenge h2": "車両開発、ブランド設計、スポンサー活動を同時に進めています。",
+              ".challenge-list .card:nth-child(1) p": "CAD設計、空力改善、3Dモデル制作を進め、走れる車体へ磨き込みます。",
+              ".challenge-list .card:nth-child(2) p": "LP、スポンサー資料、SNS発信で、チームの価値を伝える土台を作ります。",
+              ".challenge-list .card:nth-child(3) p": "企業への協賛提案と面談準備を、自分たちの言葉で進めます。",
+              ".challenge-list .card:nth-child(4) p": "国内大会と国際大会を見据え、世界へ向かう体制を整えます。",
+              "#support .kicker": "Support AMT Racing",
+              "#support h2": "支援は、次世代の教育モデルへの投資になる。",
+              "#support > p:not(.kicker)": "御社が支援するのは、完成された結果ではなく、0から学び、挑み、世界へ向かう過程そのものです。私たちは、共に走ってくださる企業を探しています。",
+              ".support-grid .card:nth-child(1) h3": "若者の挑戦を支える企業へ",
+              ".support-grid .card:nth-child(1) p": "高校生の挑戦を後押しする企業姿勢を発信できます。",
+              ".support-grid .card:nth-child(2) h3": "新しい教育の形",
+              ".support-grid .card:nth-child(2) p": "技術、金融、発信、チーム運営を横断して学ぶ実践に関われます。",
+              ".support-grid .card:nth-child(3) h3": "0から世界への物語",
+              ".support-grid .card:nth-child(3) p": "完成後ではなく、始まりから関わる価値を共有できます。",
+              ".plans .kicker": "Sponsorship Menu",
+              ".plans h2": "協賛プラン",
+              ".plan-row:nth-child(1) span": "要相談",
+              ".plan-row:nth-child(1) p span:nth-child(1)": "提供内容：支援者一覧、活動報告書",
+              ".plan-row:nth-child(1) p span:nth-child(2)": "価値：個人として始まりを支える",
+              ".plan-row:nth-child(2) span": "5万円",
+              ".plan-row:nth-child(2) p span:nth-child(1)": "提供内容：LP掲載、活動報告書、SNS紹介",
+              ".plan-row:nth-child(2) p span:nth-child(2)": "価値：若者の挑戦を支える企業として発信",
+              ".plan-row:nth-child(3) span": "10万円",
+              ".plan-row:nth-child(3) p span:nth-child(1)": "提供内容：LP・SNS・資料・活動報告に掲載",
+              ".plan-row:nth-child(3) p span:nth-child(2)": "価値：STEM教育支援の姿勢を伝える",
+              ".plan-row:nth-child(4) span": "20万円",
+              ".plan-row:nth-child(4) p span:nth-child(1)": "提供内容：主要媒体で紹介、活動報告、企業紹介",
+              ".plan-row:nth-child(4) p span:nth-child(2)": "価値：ものづくり・教育支援のストーリー化",
+              ".plan-row:nth-child(5) span": "30万円",
+              ".plan-row:nth-child(5) p span:nth-child(1)": "提供内容：車体・ウェア・LP・SNS等を個別相談",
+              ".plan-row:nth-child(5) p span:nth-child(2)": "価値：始まりを支える主要パートナーとして発信",
+              ".plan-row:nth-child(6) span": "現物提供",
+              ".plan-row:nth-child(6) p span:nth-child(1)": "提供内容：Tシャツ、ステッカー、印刷、グッズ制作など",
+              ".plan-row:nth-child(6) p span:nth-child(2)": "価値：大会準備を支える実践的パートナーに",
+              ".plan-row:nth-child(7) span": "技術支援",
+              ".plan-row:nth-child(7) p span:nth-child(1)": "提供内容：CAD、CFD、加工、材料などの助言",
+              ".plan-row:nth-child(7) p span:nth-child(2)": "価値：技術・ものづくり領域との親和性を発信",
+              ".contact .kicker": "Contact",
+              ".contact h2": "0から、世界へ。その始まりを、共に創ってください。",
+              ".contact p:not(.kicker)": "協賛のご相談、資料請求、面談のご希望など、お気軽にご連絡ください。0から世界へ向かう過程を、共に創るパートナーをお待ちしています。",
+              ".mail-card span": "協賛について相談する",
+              "footer p": "STEM Racing、F1 in Schools、Formula 1等の名称・商標は各権利者に帰属します。AMT Racingは教育活動としてSTEM Racingに挑戦する学生チームです。"
+            },
+            attrs: {
+              ".video-shell": {
+                "aria-label": "STEM Racing World Finals 2025のYouTubeプレイリストを開く"
+              }
+            }
+          },
+          en: {
+            title: "AMT Racing | Amaterasu Racing",
+            description: "AMT Racing is a high school STEM Racing team building a new form of education in Japan through engineering, finance, outreach, and project management.",
+            text: {
+              '.nav a[href="#about"]': "Team",
+              '.nav a[href="#stem"]': "Competition",
+              '.nav a[href="#world"]': "World Stage",
+              '.nav a[href="#challenge"]': "Mission",
+              '.nav a[href="#support"]': "Partners",
+              ".mail-button": "Contact",
+              ".scroll-cue": "Scroll / Space / Enter",
+              ".hero-content .kicker": "Official Website / STEM Racing Team",
+              ".hero-title": "From Zero to the World.",
+              ".hero h1 small": "AMT Racing / Amaterasu Racing",
+              ".hero-copy": "AMT Racing is a high school team using STEM Racing to create a new form of education in Japan. Because we are not a finished team yet, we are looking for companies to build the starting line with us.",
+              ".actions .button.primary": "Become a Partner",
+              ".actions .button.secondary": "About STEM Racing",
+              ".actions .button.video": "Countdown to Finals",
+              ".hero-status div:nth-child(1) span": "Status",
+              ".hero-status div:nth-child(1) strong": "Building from zero",
+              ".hero-status div:nth-child(2) span": "Field",
+              ".hero-status div:nth-child(2) strong": "Design × Build × Business",
+              ".hero-status div:nth-child(3) span": "Email",
+              "#countdown .kicker": "Road to Japan National Finals",
+              "#countdown h2": "A challenge that started from zero is heading to its first stage.",
+              "#countdown > div:first-child > p:not(.kicker)": "Before the national finals, we are developing the car, building sponsor relationships, and shaping the AMT Racing brand. This countdown marks the first step from zero toward the world.",
+              ".countdown-date": "JUNE 12-14, 2026 / TOKYO INNOVATION BASE",
+              "#about .kicker": "About AMT Racing",
+              "#about h2": "Before we are a racing team, we are a project practicing a new form of education.",
+              "#about > div:nth-child(2) > p:not(.kicker)": "Engineering, finance, communication, and team building. Through STEM Racing, we practice learning that cannot happen only inside the classroom. The name AMT carries our hope to light the future like Amaterasu.",
+              ".status-grid .card:nth-child(1) h3": "A Name That Lights the Future",
+              ".status-grid .card:nth-child(1) p": "Carrying the Amaterasu spirit, we aim for the world as a challenge from Japan.",
+              ".status-grid .card:nth-child(2) h3": "Learning in the Real World",
+              ".status-grid .card:nth-child(2) p": "We learn by doing design, fundraising, outreach, and project management ourselves.",
+              ".status-grid .card:nth-child(3) h3": "Build From the Beginning",
+              ".status-grid .card:nth-child(3) p": "Companies can join the process of becoming a team, not only the finished result.",
+              "#stem .kicker": "What is STEM Racing?",
+              "#stem h2": "Learning real-world skills through racing.",
+              "#stem > div:first-child > p:not(.kicker)": "In STEM Racing, speed alone is not enough. Students handle design, fundraising, sponsor outreach, branding, and presentation. Through this competition, AMT Racing aims to build a new model of education in Japan.",
+              ".number:nth-child(1) span": "STEM",
+              ".number:nth-child(1) p": "Learn through CAD, aerodynamics, manufacturing, and testing",
+              ".number:nth-child(2) span": "Finance",
+              ".number:nth-child(2) p": "Learn budgeting, fundraising, and sponsor proposals",
+              ".number:nth-child(3) span": "Outreach",
+              ".number:nth-child(3) p": "Learn how to communicate through LP, SNS, materials, and meetings",
+              ".number:nth-child(4) span": "Project",
+              ".number:nth-child(4) p": "Learn roles, progress management, and decision-making",
+              "#world .kicker": "World Stage",
+              ".world-copy h2": "Beyond the national finals. From zero to the world stage.",
+              ".world-copy > p:not(.kicker)": "Our goal is the international stage beyond the national finals. We do not only want to go to the world; we want to build a team that can compete there through engineering, branding, and sponsor strategy.",
+              ".world-stat:nth-child(1) span": "World Finals 2025 participants",
+              ".world-stat:nth-child(2) span": "Countries and regions",
+              ".world-stat:nth-child(3) strong": "1s range",
+              ".world-stat:nth-child(3) span": "20m car development",
+              ".world-copy .button.video": "Watch on YouTube",
+              ".video-kicker": "Watch on YouTube",
+              ".video-title": "STEM Racing World Finals 2025",
+              ".video-caption span:nth-child(1)": "Aramco STEM Racing World Finals 2025",
+              ".video-caption span:nth-child(2)": "Click to open",
+              "#challenge .kicker": "Current Mission",
+              "#challenge h2": "Car development, brand building, and sponsor work are moving at the same time.",
+              ".challenge-list .card:nth-child(1) p": "CAD design, aerodynamics, and 3D modeling to build a race-ready car.",
+              ".challenge-list .card:nth-child(2) p": "LP, sponsor materials, and social media to communicate our value.",
+              ".challenge-list .card:nth-child(3) p": "Sponsor proposals and meeting preparation in our own words.",
+              ".challenge-list .card:nth-child(4) p": "Preparing for national finals while building toward the international stage.",
+              "#support .kicker": "Support AMT Racing",
+              "#support h2": "Support becomes an investment in the next education model.",
+              "#support > p:not(.kicker)": "Your support is not for a finished result. It is for the process of students learning, challenging, and moving from zero toward the world. We are looking for companies to run with us.",
+              ".support-grid .card:nth-child(1) h3": "Support Youth Challenge",
+              ".support-grid .card:nth-child(1) p": "Show your company’s commitment to backing young challengers.",
+              ".support-grid .card:nth-child(2) h3": "A New Form of Education",
+              ".support-grid .card:nth-child(2) p": "Join a practice that connects technology, finance, outreach, and team building.",
+              ".support-grid .card:nth-child(3) h3": "A Story From Zero",
+              ".support-grid .card:nth-child(3) p": "Share the value of joining the journey from the beginning.",
+              ".plans .kicker": "Sponsorship Menu",
+              ".plans h2": "Sponsorship Plans",
+              ".plan-row:nth-child(1) span": "Custom",
+              ".plan-row:nth-child(1) p span:nth-child(1)": "Includes: supporter list and activity report",
+              ".plan-row:nth-child(1) p span:nth-child(2)": "Value: support the beginning as an individual partner",
+              ".plan-row:nth-child(2) span": "JPY 50,000",
+              ".plan-row:nth-child(2) p span:nth-child(1)": "Includes: LP listing, activity report, social post",
+              ".plan-row:nth-child(2) p span:nth-child(2)": "Value: visible support for young challengers",
+              ".plan-row:nth-child(3) span": "JPY 100,000",
+              ".plan-row:nth-child(3) p span:nth-child(1)": "Includes: LP, SNS, materials, and report listing",
+              ".plan-row:nth-child(3) p span:nth-child(2)": "Value: communicate your STEM education support",
+              ".plan-row:nth-child(4) span": "JPY 200,000",
+              ".plan-row:nth-child(4) p span:nth-child(1)": "Includes: key media listing, reports, company introduction",
+              ".plan-row:nth-child(4) p span:nth-child(2)": "Value: connect manufacturing and education support",
+              ".plan-row:nth-child(5) span": "JPY 300,000",
+              ".plan-row:nth-child(5) p span:nth-child(1)": "Includes: car, apparel, LP, SNS and more by consultation",
+              ".plan-row:nth-child(5) p span:nth-child(2)": "Value: major partner from the start of AMT Racing",
+              ".plan-row:nth-child(6) span": "In-kind",
+              ".plan-row:nth-child(6) p span:nth-child(1)": "Includes: shirts, stickers, printing, goods production",
+              ".plan-row:nth-child(6) p span:nth-child(2)": "Value: practical support for competition preparation",
+              ".plan-row:nth-child(7) span": "Technical Support",
+              ".plan-row:nth-child(7) p span:nth-child(1)": "Includes: advice on CAD, CFD, machining, materials",
+              ".plan-row:nth-child(7) p span:nth-child(2)": "Value: strong connection to engineering and manufacturing",
+              ".contact .kicker": "Contact",
+              ".contact h2": "From zero to the world. Build the beginning with us.",
+              ".contact p:not(.kicker)": "For sponsorship inquiries, materials, or meeting requests, please contact us. We are looking for partners to help build the journey from zero toward the world.",
+              ".mail-card span": "Discuss Sponsorship",
+              "footer p": "STEM Racing, F1 in Schools, Formula 1 and related trademarks belong to their respective owners. AMT Racing is a student team participating in STEM Racing as an educational activity."
+            },
+            attrs: {
+              ".video-shell": {
+                "aria-label": "Open the STEM Racing World Finals 2025 YouTube playlist"
+              }
+            }
+          }
+        };
+
+        const applyLanguage = (lang) => {
+          const dictionary = translations[lang] || translations.ja;
+          document.documentElement.lang = lang;
+          document.title = dictionary.title;
+          if (metaDescription) metaDescription.setAttribute("content", dictionary.description);
+          Object.entries(dictionary.text).forEach(([selector, value]) => {
+            const element = document.querySelector(selector);
+            if (element) element.textContent = value;
+          });
+          Object.entries(dictionary.attrs).forEach(([selector, attrs]) => {
+            const element = document.querySelector(selector);
+            if (!element) return;
+            Object.entries(attrs).forEach(([name, value]) => element.setAttribute(name, value));
+          });
+          languageButtons.forEach((button) => {
+            const isActive = button.dataset.lang === lang;
+            button.classList.toggle("is-active", isActive);
+            button.setAttribute("aria-pressed", String(isActive));
+          });
+          try {
+            window.localStorage.setItem("amt-language", lang);
+          } catch (error) {
+            // Ignore storage errors in private browsing or restricted contexts.
+          }
+        };
+
+        let savedLanguage = "ja";
+        try {
+          savedLanguage = window.localStorage.getItem("amt-language") || "ja";
+        } catch (error) {
+          savedLanguage = "ja";
+        }
+
+        languageButtons.forEach((button) => {
+          button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+        });
+
+        applyLanguage(savedLanguage === "en" ? "en" : "ja");
+
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const reveals = document.querySelectorAll("[data-reveal]");
+        const revealVisibleElements = () => {
+          reveals.forEach((element) => {
+            if (element.classList.contains("is-visible")) return;
+            const rect = element.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.88 && rect.bottom > 0) {
+              element.classList.add("is-visible");
+            }
+          });
+        };
+
+        if ("IntersectionObserver" in window) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { rootMargin: "0px 0px -12% 0px", threshold: 0.16 }
+          );
+
+          reveals.forEach((element) => observer.observe(element));
+        } else {
+          reveals.forEach((element) => element.classList.add("is-visible"));
+        }
+
+        revealVisibleElements();
+
+        const hero = document.querySelector(".hero");
+        const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+        const easeOutCubic = (value) => 1 - Math.pow(1 - value, 3);
+        let heroFrame = 0;
+        let heroProgress = 0;
+
+        const setHeroProgress = (progress) => {
+          if (!hero) return;
+
+          heroProgress = clamp(progress);
+          const moveProgress = easeOutCubic(heroProgress);
+          const textProgress = clamp((heroProgress - 0.42) / 0.42);
+          const textEase = easeOutCubic(textProgress);
+          const isMobile = window.innerWidth <= 920;
+          const stageTopStart = isMobile ? 27 : 9;
+          const stageTopEnd = isMobile ? 18 : 1;
+          const stageScrollXEnd = Math.min(isMobile ? 38 : 160, window.innerWidth * (isMobile ? 0.08 : 0.12));
+          const stageScrollYEnd = isMobile ? -10 : -46;
+          const carScrollXEnd = Math.min(isMobile ? 22 : 90, window.innerWidth * (isMobile ? 0.05 : 0.08));
+          const carScrollYEnd = isMobile ? -8 : -28;
+          const carScaleEnd = isMobile ? 0.52 : 0.56;
+
+          hero.style.setProperty("--stage-top", `${stageTopStart + (stageTopEnd - stageTopStart) * moveProgress}vh`);
+          hero.style.setProperty("--stage-opacity", String(1 - 0.22 * moveProgress));
+          hero.style.setProperty("--stage-scroll-x", `${stageScrollXEnd * moveProgress}px`);
+          hero.style.setProperty("--stage-scroll-y", `${stageScrollYEnd * moveProgress}px`);
+          hero.style.setProperty("--car-scroll-x", `${carScrollXEnd * moveProgress}px`);
+          hero.style.setProperty("--car-scroll-y", `${carScrollYEnd * moveProgress}px`);
+          hero.style.setProperty("--car-rotate", `${8 * moveProgress}deg`);
+          hero.style.setProperty("--car-scale", String(1 + (carScaleEnd - 1) * moveProgress));
+          hero.style.setProperty("--speed-shift", `${-150 * moveProgress}px`);
+          hero.style.setProperty("--intro-text-opacity", String(textEase));
+          hero.style.setProperty("--intro-text-x", `${-28 * (1 - textEase)}px`);
+          hero.style.setProperty("--intro-text-y", `${34 * (1 - textEase)}px`);
+          hero.style.setProperty("--intro-text-blur", `${10 * (1 - textEase)}px`);
+          hero.style.setProperty("--intro-status-y", `${32 * (1 - textEase)}px`);
+          hero.style.setProperty("--cue-opacity", String(1 - clamp(heroProgress / 0.32)));
+          hero.style.setProperty("--page-one-active", `${100 * (1 - heroProgress)}%`);
+          hero.style.setProperty("--page-two-active", `${100 * heroProgress}%`);
+          hero.classList.toggle("hero-revealed", textProgress > 0.08);
+        };
+
+        const updateHeroProgress = () => {
+          if (!hero) return;
+          const travelDistance = Math.max(1, hero.offsetHeight - window.innerHeight);
+          const progress = reduceMotion ? 1 : clamp(-hero.getBoundingClientRect().top / travelDistance);
+          setHeroProgress(progress);
+        };
+
+        const requestHeroUpdate = () => {
+          if (heroFrame) return;
+          heroFrame = window.requestAnimationFrame(() => {
+            heroFrame = 0;
+            updateHeroProgress();
+          });
+        };
+
+        const scrollToHeroReveal = () => {
+          if (!hero) return;
+          const target = hero.offsetTop + hero.offsetHeight - window.innerHeight + 2;
+          window.scrollTo({ top: target, behavior: reduceMotion ? "auto" : "smooth" });
+        };
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key !== " " && event.key !== "Enter") return;
+          if (!hero || heroProgress >= 0.98 || window.scrollY > hero.offsetTop + hero.offsetHeight) return;
+          event.preventDefault();
+          scrollToHeroReveal();
+        });
+
+        if (hero) {
+          hero.setAttribute("tabindex", "0");
+          updateHeroProgress();
+          window.addEventListener("scroll", requestHeroUpdate, { passive: true });
+          window.addEventListener("resize", requestHeroUpdate);
+        }
+
+        if (reduceMotion) {
+          reveals.forEach((element) => element.classList.add("is-visible"));
+        }
+
+        const countdown = document.querySelector("[data-countdown]");
+        const nationalFinalsStart = new Date("2026-06-12T00:00:00+09:00").getTime();
+        const countdownTargets = {
+          days: document.querySelector("[data-countdown-days]"),
+          hours: document.querySelector("[data-countdown-hours]"),
+          minutes: document.querySelector("[data-countdown-minutes]"),
+          seconds: document.querySelector("[data-countdown-seconds]")
+        };
+
+        const pad = (value) => String(value).padStart(2, "0");
+        const updateCountdown = () => {
+          if (!countdown) return;
+
+          const remaining = Math.max(0, nationalFinalsStart - Date.now());
+          const totalSeconds = Math.floor(remaining / 1000);
+          const days = Math.floor(totalSeconds / 86400);
+          const hours = Math.floor((totalSeconds % 86400) / 3600);
+          const minutes = Math.floor((totalSeconds % 3600) / 60);
+          const seconds = totalSeconds % 60;
+
+          countdownTargets.days.textContent = pad(days);
+          countdownTargets.hours.textContent = pad(hours);
+          countdownTargets.minutes.textContent = pad(minutes);
+          countdownTargets.seconds.textContent = pad(seconds);
+        };
+
+        updateCountdown();
+        window.setInterval(updateCountdown, 1000);
+        window.addEventListener("scroll", revealVisibleElements, { passive: true });
+      })();
+    </script>
+  </body>
+</html>
