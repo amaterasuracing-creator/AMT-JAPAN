@@ -1586,6 +1586,81 @@
         }
       }
 
+      @media (max-width: 760px), (hover: none) and (pointer: coarse) {
+        .hero {
+          height: auto;
+          min-height: 100svh;
+          overflow: hidden;
+          --stage-width: min(430px, 112vw);
+          --stage-top: 54px;
+          --stage-opacity: 0.68;
+          --stage-scroll-x: 0px;
+          --stage-scroll-y: 0px;
+          --car-scroll-x: 0px;
+          --car-scroll-y: 0px;
+          --car-rotate: 4deg;
+          --car-scale: 0.72;
+          --intro-text-opacity: 1;
+          --intro-text-x: 0px;
+          --intro-text-y: 0px;
+          --intro-text-blur: 0px;
+          --intro-status-y: 0px;
+          --cue-opacity: 0;
+          --page-one-active: 0%;
+          --page-two-active: 100%;
+        }
+
+        .hero.hero-revealed {
+          --stage-width: min(430px, 112vw);
+          --stage-top: 54px;
+          --stage-opacity: 0.68;
+          --stage-scroll-x: 0px;
+          --stage-scroll-y: 0px;
+          --car-scroll-x: 0px;
+          --car-scroll-y: 0px;
+          --car-rotate: 4deg;
+          --car-scale: 0.72;
+        }
+
+        .hero-sticky {
+          position: relative;
+          height: auto;
+          min-height: 100svh;
+          overflow: hidden;
+        }
+
+        .hero-motion-layer {
+          height: 360px;
+          overflow: visible;
+        }
+
+        .hero-page {
+          position: relative;
+          inset: auto;
+          min-height: auto;
+        }
+
+        .hero-intro-page,
+        .hero-page-indicator {
+          display: none;
+        }
+
+        .hero-cover-page {
+          display: block;
+          min-height: 100svh;
+          padding: clamp(292px, 43svh, 340px) 0 34px;
+        }
+
+        .js .hero-content,
+        .js .hero-status {
+          opacity: 1;
+          transform: none;
+          filter: none;
+          pointer-events: auto;
+          transition: none;
+        }
+      }
+
       @media (max-width: 560px) {
         .site-header {
           grid-template-columns: auto auto auto;
@@ -2540,9 +2615,9 @@
           const textProgress = clamp((heroProgress - 0.42) / 0.42);
           const textEase = easeOutCubic(textProgress);
           const isMobile = window.innerWidth <= 920;
-          const isSmallMobile = window.innerWidth <= 560;
+          const isStaticHero = window.matchMedia("(max-width: 760px), (hover: none) and (pointer: coarse)").matches;
 
-          if (isSmallMobile) {
+          if (isStaticHero) {
             heroProgress = 1;
             hero.style.setProperty("--stage-top", "54px");
             hero.style.setProperty("--stage-opacity", "0.68");
@@ -2565,11 +2640,11 @@
             return;
           }
 
-          const stageTopStart = isSmallMobile ? 20 : isMobile ? 22 : 9;
-          const stageTopEnd = isSmallMobile ? 5 : isMobile ? 7 : 1;
-          const stageScrollXEnd = Math.min(isSmallMobile ? 0 : isMobile ? 18 : 160, window.innerWidth * (isMobile ? 0.04 : 0.12));
+          const stageTopStart = isMobile ? 22 : 9;
+          const stageTopEnd = isMobile ? 7 : 1;
+          const stageScrollXEnd = Math.min(isMobile ? 18 : 160, window.innerWidth * (isMobile ? 0.04 : 0.12));
           const stageScrollYEnd = isMobile ? -4 : -46;
-          const carScrollXEnd = Math.min(isSmallMobile ? 0 : isMobile ? 12 : 90, window.innerWidth * (isMobile ? 0.03 : 0.08));
+          const carScrollXEnd = Math.min(isMobile ? 12 : 90, window.innerWidth * (isMobile ? 0.03 : 0.08));
           const carScrollYEnd = isMobile ? -4 : -28;
           const carScaleEnd = isMobile ? 0.43 : 0.56;
 
