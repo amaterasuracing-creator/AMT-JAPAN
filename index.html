@@ -1293,6 +1293,77 @@
         color: var(--white);
       }
 
+      .funding-goal {
+        display: grid;
+        grid-template-columns: minmax(220px, 0.56fr) minmax(0, 1fr);
+        gap: 18px;
+        align-items: stretch;
+        margin-top: 30px;
+      }
+
+      .goal-total,
+      .goal-breakdown {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background:
+          linear-gradient(140deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.045)),
+          rgba(255, 255, 255, 0.055);
+      }
+
+      .goal-total {
+        display: grid;
+        align-content: center;
+        padding: 24px;
+        border-top: 4px solid var(--red);
+      }
+
+      .goal-total span,
+      .goal-breakdown span {
+        color: var(--gold);
+        font-family: "Oswald", "Noto Sans JP", system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 950;
+        text-transform: uppercase;
+      }
+
+      .goal-total strong {
+        display: block;
+        margin-top: 10px;
+        color: var(--white);
+        font-family: "Oswald", "Noto Sans JP", system-ui, sans-serif;
+        font-size: clamp(52px, 7vw, 92px);
+        line-height: 0.92;
+      }
+
+      .goal-total p,
+      .goal-breakdown p {
+        margin: 12px 0 0;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 14px;
+        line-height: 1.65;
+      }
+
+      .goal-breakdown {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1px;
+        padding: 1px;
+        border-top: 4px solid var(--gold);
+      }
+
+      .goal-breakdown div {
+        padding: 18px 16px;
+        background: rgba(6, 8, 13, 0.48);
+      }
+
+      .goal-breakdown strong {
+        display: block;
+        margin-top: 7px;
+        color: var(--white);
+        font-family: "Oswald", "Noto Sans JP", system-ui, sans-serif;
+        font-size: clamp(24px, 2.4vw, 38px);
+        line-height: 1;
+      }
+
       .plan-table {
         margin-top: 34px;
         border-top: 2px solid var(--red);
@@ -1721,6 +1792,15 @@
         .countdown-board {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
+
+        .funding-goal,
+        .goal-breakdown {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .goal-total {
+          grid-column: 1 / -1;
+        }
       }
 
       @media (max-width: 760px), (hover: none) and (pointer: coarse) {
@@ -2129,6 +2209,25 @@
           padding: 16px;
         }
 
+        .funding-goal,
+        .goal-breakdown {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+
+        .goal-total,
+        .goal-breakdown div {
+          padding: 18px;
+        }
+
+        .goal-total strong {
+          font-size: clamp(52px, 17vw, 76px);
+        }
+
+        .goal-breakdown strong {
+          font-size: 30px;
+        }
+
         .plan-row strong {
           font-size: 20px;
         }
@@ -2428,27 +2527,40 @@
       <section class="section plans" id="plans">
         <p class="kicker">Sponsorship Menu</p>
         <h2>協賛プラン</h2>
+        <div class="funding-goal">
+          <div class="goal-total">
+            <span>Funding Goal</span>
+            <strong>180万円</strong>
+            <p>国内大会・国際大会を見据えた車両開発、制作、遠征、発信活動のための協賛目標です。</p>
+          </div>
+          <div class="goal-breakdown" aria-label="協賛目標の構成">
+            <div><span>01</span><strong>車両開発</strong><p>CAD、試作、加工、テスト</p></div>
+            <div><span>02</span><strong>大会準備</strong><p>大会参加、移動、備品</p></div>
+            <div><span>03</span><strong>発信活動</strong><p>LP、資料、SNS、報告書</p></div>
+            <div><span>04</span><strong>チーム運営</strong><p>制作物、活動費、予備費</p></div>
+          </div>
+        </div>
         <div class="plan-table">
+          <div class="plan-row featured">
+            <strong>Gold Partner</strong><span>50万円</span><p><span>提供内容：車体・ウェア・LP・SNS等を個別相談</span><span>価値：始まりを支える最上位パートナーとして発信</span></p>
+          </div>
           <div class="plan-row">
-            <strong>Individual Partner</strong><span>要相談</span><p><span>提供内容：支援者一覧、活動報告書</span><span>価値：個人として始まりを支える</span></p>
+            <strong>Silver Partner</strong><span>30万円</span><p><span>提供内容：主要媒体で紹介、活動報告、企業紹介</span><span>価値：ものづくり・教育支援のストーリー化</span></p>
+          </div>
+          <div class="plan-row">
+            <strong>Bronze Partner</strong><span>15万円</span><p><span>提供内容：LP・SNS・資料・活動報告に掲載</span><span>価値：STEM教育支援の姿勢を伝える</span></p>
           </div>
           <div class="plan-row">
             <strong>Supporter</strong><span>5万円</span><p><span>提供内容：LP掲載、活動報告書、SNS紹介</span><span>価値：若者の挑戦を支える企業として発信</span></p>
           </div>
           <div class="plan-row">
-            <strong>Bronze Partner</strong><span>10万円</span><p><span>提供内容：LP・SNS・資料・活動報告に掲載</span><span>価値：STEM教育支援の姿勢を伝える</span></p>
+            <strong>Individual Partner</strong><span>要相談</span><p><span>180万円の目標とは別途受付</span><span>支援者一覧、活動報告書に掲載。個人として始まりを支える</span></p>
           </div>
           <div class="plan-row">
-            <strong>Silver Partner</strong><span>20万円</span><p><span>提供内容：主要媒体で紹介、活動報告、企業紹介</span><span>価値：ものづくり・教育支援のストーリー化</span></p>
-          </div>
-          <div class="plan-row featured">
-            <strong>Gold Partner</strong><span>30万円</span><p><span>提供内容：車体・ウェア・LP・SNS等を個別相談</span><span>価値：始まりを支える主要パートナーとして発信</span></p>
+            <strong>Goods Partner</strong><span>現物提供</span><p><span>金額換算外の支援として受付</span><span>Tシャツ、ステッカー、印刷、グッズ制作など、大会準備を支える実践的パートナーに</span></p>
           </div>
           <div class="plan-row">
-            <strong>Goods Partner</strong><span>現物提供</span><p><span>提供内容：Tシャツ、ステッカー、印刷、グッズ制作など</span><span>価値：大会準備を支える実践的パートナーに</span></p>
-          </div>
-          <div class="plan-row">
-            <strong>Technical Advisor</strong><span>技術支援</span><p><span>提供内容：CAD、CFD、加工、材料などの助言</span><span>価値：技術・ものづくり領域との親和性を発信</span></p>
+            <strong>Technical Advisor</strong><span>技術支援</span><p><span>金額換算外の技術支援として受付</span><span>CAD、CFD、加工、材料などの助言。技術・ものづくり領域との親和性を発信</span></p>
           </div>
         </div>
       </section>
@@ -2457,14 +2569,14 @@
         <p class="kicker" data-reveal>Partner Board</p>
         <h2 data-reveal data-reveal-delay="1">共に走るスポンサー</h2>
         <p data-reveal data-reveal-delay="2">
-          AMT Racingの挑戦を支えてくださる企業・個人パートナーを掲載する枠です。
+          AMT Racingの挑戦を支えてくださる企業・個人パートナーを掲載するエリアです。
           ロゴや企業名を、活動報告・SNS・資料と連動して発信していきます。
         </p>
         <div class="sponsor-board">
           <article class="sponsor-slot featured-slot" data-reveal>
             <span>Founding / Gold Partner</span>
-            <strong>Partner Slot</strong>
-            <p>AMT Racingの始まりを象徴するメインスポンサー枠。ロゴ掲載・活動発信・報告書で重点的に紹介します。</p>
+            <strong>Main Partner</strong>
+            <p>AMT Racingの始まりを象徴するメインスポンサー。ロゴ掲載・活動発信・報告書で重点的に紹介します。</p>
           </article>
           <article class="sponsor-slot" data-reveal data-reveal-delay="1">
             <span>Silver / Bronze</span>
@@ -2479,7 +2591,7 @@
           <article class="sponsor-slot" data-reveal data-reveal-delay="3">
             <span>Goods Partner</span>
             <strong>Open</strong>
-            <p>物品提供・制作協力など、大会準備を支えるパートナー枠です。</p>
+            <p>物品提供・制作協力など、大会準備を支えるパートナーです。</p>
           </article>
           <article class="sponsor-slot has-logo" data-reveal data-reveal-delay="4">
             <span>Technical Advisor</span>
@@ -2595,33 +2707,48 @@
               ".support-grid .card:nth-child(3) p": "完成後ではなく、始まりから関わる価値を共有できます。",
               ".plans .kicker": "Sponsorship Menu",
               ".plans h2": "協賛プラン",
-              ".plan-row:nth-child(1) span": "要相談",
-              ".plan-row:nth-child(1) p span:nth-child(1)": "提供内容：支援者一覧、活動報告書",
-              ".plan-row:nth-child(1) p span:nth-child(2)": "価値：個人として始まりを支える",
-              ".plan-row:nth-child(2) span": "5万円",
-              ".plan-row:nth-child(2) p span:nth-child(1)": "提供内容：LP掲載、活動報告書、SNS紹介",
-              ".plan-row:nth-child(2) p span:nth-child(2)": "価値：若者の挑戦を支える企業として発信",
-              ".plan-row:nth-child(3) span": "10万円",
+              ".goal-total span": "Funding Goal",
+              ".goal-total strong": "180万円",
+              ".goal-total p": "国内大会・国際大会を見据えた車両開発、制作、遠征、発信活動のための協賛目標です。",
+              ".goal-breakdown div:nth-child(1) span": "01",
+              ".goal-breakdown div:nth-child(1) strong": "車両開発",
+              ".goal-breakdown div:nth-child(1) p": "CAD、試作、加工、テスト",
+              ".goal-breakdown div:nth-child(2) span": "02",
+              ".goal-breakdown div:nth-child(2) strong": "大会準備",
+              ".goal-breakdown div:nth-child(2) p": "大会参加、移動、備品",
+              ".goal-breakdown div:nth-child(3) span": "03",
+              ".goal-breakdown div:nth-child(3) strong": "発信活動",
+              ".goal-breakdown div:nth-child(3) p": "LP、資料、SNS、報告書",
+              ".goal-breakdown div:nth-child(4) span": "04",
+              ".goal-breakdown div:nth-child(4) strong": "チーム運営",
+              ".goal-breakdown div:nth-child(4) p": "制作物、活動費、予備費",
+              ".plan-row:nth-child(1) span": "50万円",
+              ".plan-row:nth-child(1) p span:nth-child(1)": "提供内容：車体・ウェア・LP・SNS等を個別相談",
+              ".plan-row:nth-child(1) p span:nth-child(2)": "価値：始まりを支える最上位パートナーとして発信",
+              ".plan-row:nth-child(2) span": "30万円",
+              ".plan-row:nth-child(2) p span:nth-child(1)": "提供内容：主要媒体で紹介、活動報告、企業紹介",
+              ".plan-row:nth-child(2) p span:nth-child(2)": "価値：ものづくり・教育支援のストーリー化",
+              ".plan-row:nth-child(3) span": "15万円",
               ".plan-row:nth-child(3) p span:nth-child(1)": "提供内容：LP・SNS・資料・活動報告に掲載",
               ".plan-row:nth-child(3) p span:nth-child(2)": "価値：STEM教育支援の姿勢を伝える",
-              ".plan-row:nth-child(4) span": "20万円",
-              ".plan-row:nth-child(4) p span:nth-child(1)": "提供内容：主要媒体で紹介、活動報告、企業紹介",
-              ".plan-row:nth-child(4) p span:nth-child(2)": "価値：ものづくり・教育支援のストーリー化",
-              ".plan-row:nth-child(5) span": "30万円",
-              ".plan-row:nth-child(5) p span:nth-child(1)": "提供内容：車体・ウェア・LP・SNS等を個別相談",
-              ".plan-row:nth-child(5) p span:nth-child(2)": "価値：始まりを支える主要パートナーとして発信",
+              ".plan-row:nth-child(4) span": "5万円",
+              ".plan-row:nth-child(4) p span:nth-child(1)": "提供内容：LP掲載、活動報告書、SNS紹介",
+              ".plan-row:nth-child(4) p span:nth-child(2)": "価値：若者の挑戦を支える企業として発信",
+              ".plan-row:nth-child(5) span": "要相談",
+              ".plan-row:nth-child(5) p span:nth-child(1)": "180万円の目標とは別途受付",
+              ".plan-row:nth-child(5) p span:nth-child(2)": "支援者一覧、活動報告書に掲載。個人として始まりを支える",
               ".plan-row:nth-child(6) span": "現物提供",
-              ".plan-row:nth-child(6) p span:nth-child(1)": "提供内容：Tシャツ、ステッカー、印刷、グッズ制作など",
-              ".plan-row:nth-child(6) p span:nth-child(2)": "価値：大会準備を支える実践的パートナーに",
+              ".plan-row:nth-child(6) p span:nth-child(1)": "金額換算外の支援として受付",
+              ".plan-row:nth-child(6) p span:nth-child(2)": "Tシャツ、ステッカー、印刷、グッズ制作など、大会準備を支える実践的パートナーに",
               ".plan-row:nth-child(7) span": "技術支援",
-              ".plan-row:nth-child(7) p span:nth-child(1)": "提供内容：CAD、CFD、加工、材料などの助言",
-              ".plan-row:nth-child(7) p span:nth-child(2)": "価値：技術・ものづくり領域との親和性を発信",
+              ".plan-row:nth-child(7) p span:nth-child(1)": "金額換算外の技術支援として受付",
+              ".plan-row:nth-child(7) p span:nth-child(2)": "CAD、CFD、加工、材料などの助言。技術・ものづくり領域との親和性を発信",
               ".partners .kicker": "Partner Board",
               ".partners h2": "共に走るスポンサー",
-              ".partners > p:not(.kicker)": "AMT Racingの挑戦を支えてくださる企業・個人パートナーを掲載する枠です。ロゴや企業名を、活動報告・SNS・資料と連動して発信していきます。",
+              ".partners > p:not(.kicker)": "AMT Racingの挑戦を支えてくださる企業・個人パートナーを掲載するエリアです。ロゴや企業名を、活動報告・SNS・資料と連動して発信していきます。",
               ".sponsor-slot:nth-child(1) span": "Founding / Gold Partner",
-              ".sponsor-slot:nth-child(1) strong": "Partner Slot",
-              ".sponsor-slot:nth-child(1) p": "AMT Racingの始まりを象徴するメインスポンサー枠。ロゴ掲載・活動発信・報告書で重点的に紹介します。",
+              ".sponsor-slot:nth-child(1) strong": "Main Partner",
+              ".sponsor-slot:nth-child(1) p": "AMT Racingの始まりを象徴するメインスポンサー。ロゴ掲載・活動発信・報告書で重点的に紹介します。",
               ".sponsor-slot:nth-child(2) span": "Silver / Bronze",
               ".sponsor-slot:nth-child(2) strong": "Open",
               ".sponsor-slot:nth-child(2) p": "ものづくり・教育支援の姿勢を、AMT Racingの活動と共に発信します。",
@@ -2630,7 +2757,7 @@
               ".sponsor-slot:nth-child(3) p": "若者の挑戦を支えるパートナーとして、Web・活動報告で紹介します。",
               ".sponsor-slot:nth-child(4) span": "Goods Partner",
               ".sponsor-slot:nth-child(4) strong": "Open",
-              ".sponsor-slot:nth-child(4) p": "物品提供・制作協力など、大会準備を支えるパートナー枠です。",
+              ".sponsor-slot:nth-child(4) p": "物品提供・制作協力など、大会準備を支えるパートナーです。",
               ".sponsor-slot:nth-child(5) span": "Technical Advisor",
               ".sponsor-slot:nth-child(5) strong": "Formula TMU",
               ".sponsor-slot:nth-child(5) p": "東京都立大学Formula Studentチームによる技術支援パートナー。車両開発・設計面の挑戦を支えていただきます。",
@@ -2722,32 +2849,47 @@
               ".support-grid .card:nth-child(3) p": "Share the value of joining the journey from the beginning.",
               ".plans .kicker": "Sponsorship Menu",
               ".plans h2": "Sponsorship Plans",
-              ".plan-row:nth-child(1) span": "Custom",
-              ".plan-row:nth-child(1) p span:nth-child(1)": "Includes: supporter list and activity report",
-              ".plan-row:nth-child(1) p span:nth-child(2)": "Value: support the beginning as an individual partner",
-              ".plan-row:nth-child(2) span": "JPY 50,000",
-              ".plan-row:nth-child(2) p span:nth-child(1)": "Includes: LP listing, activity report, social post",
-              ".plan-row:nth-child(2) p span:nth-child(2)": "Value: visible support for young challengers",
-              ".plan-row:nth-child(3) span": "JPY 100,000",
+              ".goal-total span": "Funding Goal",
+              ".goal-total strong": "JPY 1.8M",
+              ".goal-total p": "Our sponsorship target for vehicle development, production, travel, and communication toward national and international competitions.",
+              ".goal-breakdown div:nth-child(1) span": "01",
+              ".goal-breakdown div:nth-child(1) strong": "Vehicle",
+              ".goal-breakdown div:nth-child(1) p": "CAD, prototypes, machining, testing",
+              ".goal-breakdown div:nth-child(2) span": "02",
+              ".goal-breakdown div:nth-child(2) strong": "Competition",
+              ".goal-breakdown div:nth-child(2) p": "Entry, travel, equipment",
+              ".goal-breakdown div:nth-child(3) span": "03",
+              ".goal-breakdown div:nth-child(3) strong": "Outreach",
+              ".goal-breakdown div:nth-child(3) p": "LP, materials, SNS, reports",
+              ".goal-breakdown div:nth-child(4) span": "04",
+              ".goal-breakdown div:nth-child(4) strong": "Operation",
+              ".goal-breakdown div:nth-child(4) p": "Production, activity costs, reserve",
+              ".plan-row:nth-child(1) span": "JPY 500,000",
+              ".plan-row:nth-child(1) p span:nth-child(1)": "Includes: car, apparel, LP, SNS and more by consultation",
+              ".plan-row:nth-child(1) p span:nth-child(2)": "Value: presented as the top partner from the beginning",
+              ".plan-row:nth-child(2) span": "JPY 300,000",
+              ".plan-row:nth-child(2) p span:nth-child(1)": "Includes: key media listing, reports, and company introduction",
+              ".plan-row:nth-child(2) p span:nth-child(2)": "Value: connect manufacturing and education support",
+              ".plan-row:nth-child(3) span": "JPY 150,000",
               ".plan-row:nth-child(3) p span:nth-child(1)": "Includes: LP, SNS, materials, and report listing",
               ".plan-row:nth-child(3) p span:nth-child(2)": "Value: communicate your STEM education support",
-              ".plan-row:nth-child(4) span": "JPY 200,000",
-              ".plan-row:nth-child(4) p span:nth-child(1)": "Includes: key media listing, reports, company introduction",
-              ".plan-row:nth-child(4) p span:nth-child(2)": "Value: connect manufacturing and education support",
-              ".plan-row:nth-child(5) span": "JPY 300,000",
-              ".plan-row:nth-child(5) p span:nth-child(1)": "Includes: car, apparel, LP, SNS and more by consultation",
-              ".plan-row:nth-child(5) p span:nth-child(2)": "Value: major partner from the start of AMT Racing",
+              ".plan-row:nth-child(4) span": "JPY 50,000",
+              ".plan-row:nth-child(4) p span:nth-child(1)": "Includes: LP listing, activity report, and social post",
+              ".plan-row:nth-child(4) p span:nth-child(2)": "Value: visible support for young challengers",
+              ".plan-row:nth-child(5) span": "Custom",
+              ".plan-row:nth-child(5) p span:nth-child(1)": "Accepted separately from the JPY 1.8M goal",
+              ".plan-row:nth-child(5) p span:nth-child(2)": "Supporter list and activity report. Support the beginning as an individual partner.",
               ".plan-row:nth-child(6) span": "In-kind",
-              ".plan-row:nth-child(6) p span:nth-child(1)": "Includes: shirts, stickers, printing, goods production",
-              ".plan-row:nth-child(6) p span:nth-child(2)": "Value: practical support for competition preparation",
+              ".plan-row:nth-child(6) p span:nth-child(1)": "Accepted as non-cash support",
+              ".plan-row:nth-child(6) p span:nth-child(2)": "Shirts, stickers, printing, goods production, and practical support for competition preparation.",
               ".plan-row:nth-child(7) span": "Technical Support",
-              ".plan-row:nth-child(7) p span:nth-child(1)": "Includes: advice on CAD, CFD, machining, materials",
-              ".plan-row:nth-child(7) p span:nth-child(2)": "Value: strong connection to engineering and manufacturing",
+              ".plan-row:nth-child(7) p span:nth-child(1)": "Accepted as non-cash technical support",
+              ".plan-row:nth-child(7) p span:nth-child(2)": "Advice on CAD, CFD, machining, and materials. Strong connection to engineering and manufacturing.",
               ".partners .kicker": "Partner Board",
               ".partners h2": "Sponsors Running With Us",
               ".partners > p:not(.kicker)": "This area highlights the companies and individual partners supporting AMT Racing. Partner names and logos can connect with our reports, social posts, and sponsor materials.",
               ".sponsor-slot:nth-child(1) span": "Founding / Gold Partner",
-              ".sponsor-slot:nth-child(1) strong": "Partner Slot",
+              ".sponsor-slot:nth-child(1) strong": "Main Partner",
               ".sponsor-slot:nth-child(1) p": "A main sponsor position representing the beginning of AMT Racing, highlighted through logo placement, activity updates, and reports.",
               ".sponsor-slot:nth-child(2) span": "Silver / Bronze",
               ".sponsor-slot:nth-child(2) strong": "Open",
