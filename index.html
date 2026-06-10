@@ -635,6 +635,8 @@
         font-size: clamp(17px, 2vw, 22px);
         line-height: 1.75;
         font-weight: 800;
+        line-break: strict;
+        text-wrap: pretty;
       }
 
       .actions {
@@ -793,6 +795,8 @@
         font-weight: 900;
         font-size: clamp(36px, 4.2vw, 60px);
         line-height: 1.08;
+        line-break: strict;
+        text-wrap: balance;
       }
 
       .section p {
@@ -800,6 +804,8 @@
         font-size: clamp(16px, 1.22vw, 19px);
         line-height: 1.82;
         font-weight: 650;
+        line-break: strict;
+        text-wrap: pretty;
       }
 
       .about {
@@ -1360,8 +1366,9 @@
         margin-top: 7px;
         color: var(--white);
         font-family: "Oswald", "Noto Sans JP", system-ui, sans-serif;
-        font-size: clamp(24px, 2.4vw, 38px);
+        font-size: clamp(24px, 2.1vw, 32px);
         line-height: 1;
+        white-space: nowrap;
       }
 
       .plan-table {
@@ -1506,17 +1513,58 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 82px;
+        min-height: 96px;
         margin-top: 18px;
         padding: 14px 16px;
         background: var(--white);
+        border: 1px solid rgba(255, 255, 255, 0.12);
         box-shadow: 0 18px 44px rgba(0, 0, 0, 0.24);
       }
 
+      .technical-advisor-card {
+        grid-column: 1 / -1;
+      }
+
+      .technical-advisor-card strong {
+        margin-top: 18px;
+      }
+
+      .sponsor-logo-pair {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .advisor-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 142px;
+        padding: 16px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: var(--white);
+        box-shadow: 0 18px 44px rgba(0, 0, 0, 0.22);
+      }
+
+      .advisor-logo.logo-dark {
+        background: #050505;
+        border-color: rgba(255, 255, 255, 0.18);
+      }
+
+      .advisor-logo img,
       .sponsor-logo-frame img {
         display: block;
-        width: min(250px, 100%);
+        width: min(440px, 100%);
+        max-height: 74px;
         height: auto;
+        object-fit: contain;
+      }
+
+      .advisor-logo img {
+        max-height: 112px;
       }
 
       .sponsor-slot.has-logo strong {
@@ -1795,11 +1843,16 @@
 
         .funding-goal,
         .goal-breakdown {
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr;
         }
 
         .goal-total {
-          grid-column: 1 / -1;
+          grid-column: auto;
+        }
+
+        .plan-row {
+          grid-template-columns: 1fr;
+          gap: 8px;
         }
       }
 
@@ -2260,9 +2313,24 @@
         }
 
         .sponsor-logo-frame {
-          min-height: 74px;
+          min-height: 82px;
           margin-top: 14px;
           padding: 12px;
+        }
+
+        .sponsor-logo-pair {
+          grid-template-columns: 1fr;
+          gap: 10px;
+          margin-top: 14px;
+        }
+
+        .advisor-logo {
+          min-height: 104px;
+          padding: 12px;
+        }
+
+        .advisor-logo img {
+          max-height: 82px;
         }
 
         .sponsor-slot.has-logo strong {
@@ -2342,11 +2410,7 @@
                 <span class="hero-title">0から、世界へ。</span>
                 <small>AMT Racing / アマテラス レーシング</small>
               </h1>
-              <p class="hero-copy">
-                STEM Racingに挑戦しながら、日本に新しい教育の形をつくろうとしている高校生チームです。
-                まだ完成されたチームではないからこそ、0から世界へ向かう始まりを、
-                最初から共に創ってくださる企業を探しています。
-              </p>
+              <p class="hero-copy">STEM Racingに挑戦しながら、日本に新しい教育の形をつくろうとしている高校生チームです。まだ完成されたチームではないからこそ、0から世界へ向かう始まりを、最初から共に創ってくださる企業を探しています。</p>
               <div class="actions">
                 <a class="button primary" href="mailto:amaterasuracing@gmail.com">共に走るパートナーになる</a>
                 <a class="button secondary" href="#stem">STEM Racingを知る</a>
@@ -2376,10 +2440,7 @@
         <div data-reveal>
           <p class="kicker">Road to Japan National Finals</p>
           <h2>0から始まった挑戦が、最初の舞台へ向かっています。</h2>
-          <p>
-            国内大会までに、車両開発、スポンサー活動、ブランドづくりを同時に進めています。
-            このカウントダウンは、0から世界へ向かう最初の一歩までの時間です。
-          </p>
+          <p>国内大会までに、車両開発、スポンサー活動、ブランドづくりを同時に進めています。このカウントダウンは、0から世界へ向かう最初の一歩までの時間です。</p>
           <div class="countdown-date">JUNE 12-14, 2026 / TOKYO INNOVATION BASE</div>
         </div>
         <div class="countdown-board" data-countdown data-reveal data-reveal-delay="1">
@@ -2397,11 +2458,7 @@
         <div data-reveal data-reveal-delay="1">
           <p class="kicker">About AMT Racing</p>
           <h2>レースチームである前に、新しい教育の形を実践するプロジェクトです。</h2>
-          <p>
-            エンジニアリング、ファイナンス、コミュニケーション、チームビルディング。
-            STEM Racingを通じて、教室だけでは得られない学びを社会の中で実践します。
-            AMTには、Amaterasuのように未来を照らす存在でありたいという想いを込めています。
-          </p>
+          <p>エンジニアリング、ファイナンス、コミュニケーション、チームビルディング。STEM Racingを通じて、教室だけでは得られない学びを社会の中で実践します。AMTには、Amaterasuのように未来を照らす存在でありたいという想いを込めています。</p>
           <div class="status-grid">
             <article class="card" data-reveal>
               <h3>未来を照らす名前</h3>
@@ -2423,16 +2480,12 @@
         <div data-reveal>
           <p class="kicker">What is STEM Racing?</p>
           <h2>レースを通じて、実社会で必要な力を学ぶ。</h2>
-          <p>
-            STEM Racingでは、車を速くする技術だけでは勝てません。設計、資金調達、
-            スポンサー営業、ブランドづくり、プレゼンテーションまで学生が担います。
-            AMT Racingはこの競技を通じて、日本に新しい教育の形をつくろうとしています。
-          </p>
+          <p>STEM Racingでは、車を速くする技術だけでは勝てません。設計、資金調達、スポンサー営業、ブランドづくり、プレゼンテーションまで学生が担います。AMT Racingはこの競技を通じて、日本に新しい教育の形をつくろうとしています。</p>
         </div>
         <div class="numbers">
           <div class="number" data-reveal><span>STEM</span><p>CAD、空力、製造、テストで技術を学ぶ</p></div>
           <div class="number" data-reveal data-reveal-delay="1"><span>Finance</span><p>予算管理、資金調達、協賛提案を学ぶ</p></div>
-          <div class="number" data-reveal data-reveal-delay="2"><span>Outreach</span><p>LP、SNS、資料、面談で伝える力を学ぶ</p></div>
+          <div class="number" data-reveal data-reveal-delay="2"><span>Outreach</span><p>HP、SNS、資料、面談で伝える力を学ぶ</p></div>
           <div class="number" data-reveal data-reveal-delay="3"><span>Project</span><p>役割分担、進捗管理、意思決定を学ぶ</p></div>
         </div>
       </section>
@@ -2442,11 +2495,7 @@
           <div class="world-copy" data-reveal>
             <p class="kicker">World Stage</p>
             <h2>国内大会で終わらせない。0から始まったチームを世界へ。</h2>
-            <p>
-              目標は、国内大会の先にある国際大会です。技術、ブランド、スポンサー戦略で世界と戦える
-              チームを、自分たちでつくりたい。私たちは、世界に行きたいだけではありません。
-              世界と戦えるチームをつくりたい。
-            </p>
+            <p>目標は、国内大会の先にある国際大会です。技術、ブランド、スポンサー戦略で世界と戦えるチームを、自分たちでつくりたい。私たちは、世界に行きたいだけではありません。世界と戦えるチームをつくりたい。</p>
             <div class="world-stats">
               <div class="world-stat" data-reveal><strong>400+</strong><span>2025年世界大会参加者</span></div>
               <div class="world-stat" data-reveal data-reveal-delay="1"><strong>30+</strong><span>参加国・地域</span></div>
@@ -2488,7 +2537,7 @@
           </article>
           <article class="card" data-reveal data-reveal-delay="1">
             <h3>Brand / Web</h3>
-            <p>LP、スポンサー資料、SNS発信で、チームの価値を伝える土台を作ります。</p>
+            <p>HP、スポンサー資料、SNS発信で、チームの価値を伝える土台を作ります。</p>
           </article>
           <article class="card" data-reveal data-reveal-delay="2">
             <h3>Sponsor Work</h3>
@@ -2504,10 +2553,7 @@
       <section class="section" id="support">
         <p class="kicker" data-reveal>Support AMT Racing</p>
         <h2 data-reveal data-reveal-delay="1">支援は、次世代の教育モデルへの投資になる。</h2>
-        <p data-reveal data-reveal-delay="2">
-          御社が支援するのは、完成された結果ではなく、0から学び、挑み、世界へ向かう過程そのものです。
-          私たちは、共に走ってくださる企業を探しています。
-        </p>
+        <p data-reveal data-reveal-delay="2">御社が支援するのは、完成された結果ではなく、0から学び、挑み、世界へ向かう過程そのものです。私たちは、共に走ってくださる企業を探しています。</p>
         <div class="support-grid">
           <article class="card" data-reveal>
             <h3>若者の挑戦を支える企業へ</h3>
@@ -2536,31 +2582,31 @@
           <div class="goal-breakdown" aria-label="協賛目標の構成">
             <div><span>01</span><strong>車両開発</strong><p>CAD、試作、加工、テスト</p></div>
             <div><span>02</span><strong>大会準備</strong><p>大会参加、移動、備品</p></div>
-            <div><span>03</span><strong>発信活動</strong><p>LP、資料、SNS、報告書</p></div>
+            <div><span>03</span><strong>発信活動</strong><p>HP、資料、SNS、報告書</p></div>
             <div><span>04</span><strong>チーム運営</strong><p>制作物、活動費、予備費</p></div>
           </div>
         </div>
         <div class="plan-table">
           <div class="plan-row featured">
-            <strong>Gold Partner</strong><span>50万円</span><p><span>提供内容：車体・ウェア・LP・SNS等を個別相談</span><span>価値：始まりを支える最上位パートナーとして発信</span></p>
+            <strong>Gold Partner</strong><span>50万円</span><p><span>提供内容：車体・ウェア・HP・SNS掲載を個別相談</span></p>
           </div>
           <div class="plan-row">
-            <strong>Silver Partner</strong><span>30万円</span><p><span>提供内容：主要媒体で紹介、活動報告、企業紹介</span><span>価値：ものづくり・教育支援のストーリー化</span></p>
+            <strong>Silver Partner</strong><span>30万円</span><p><span>提供内容：主要媒体掲載、活動報告、企業紹介</span></p>
           </div>
           <div class="plan-row">
-            <strong>Bronze Partner</strong><span>15万円</span><p><span>提供内容：LP・SNS・資料・活動報告に掲載</span><span>価値：STEM教育支援の姿勢を伝える</span></p>
+            <strong>Bronze Partner</strong><span>15万円</span><p><span>提供内容：HP・SNS・資料・報告書に掲載</span></p>
           </div>
           <div class="plan-row">
-            <strong>Supporter</strong><span>5万円</span><p><span>提供内容：LP掲載、活動報告書、SNS紹介</span><span>価値：若者の挑戦を支える企業として発信</span></p>
+            <strong>Supporter</strong><span>5万円</span><p><span>提供内容：HP掲載、報告書掲載、SNS紹介</span></p>
           </div>
           <div class="plan-row">
-            <strong>Individual Partner</strong><span>要相談</span><p><span>180万円の目標とは別途受付</span><span>支援者一覧、活動報告書に掲載。個人として始まりを支える</span></p>
+            <strong>Individual Partner</strong><span>要相談</span><p><span>支援者一覧・活動報告書に掲載</span></p>
           </div>
           <div class="plan-row">
-            <strong>Goods Partner</strong><span>現物提供</span><p><span>金額換算外の支援として受付</span><span>Tシャツ、ステッカー、印刷、グッズ制作など、大会準備を支える実践的パートナーに</span></p>
+            <strong>Goods Partner</strong><span>現物提供</span><p><span>Tシャツ、印刷、ステッカーなど制作面を支援</span></p>
           </div>
           <div class="plan-row">
-            <strong>Technical Advisor</strong><span>技術支援</span><p><span>金額換算外の技術支援として受付</span><span>CAD、CFD、加工、材料などの助言。技術・ものづくり領域との親和性を発信</span></p>
+            <strong>Technical Advisor</strong><span>技術支援</span><p><span>CAD、CFD、加工、材料などの助言</span></p>
           </div>
         </div>
       </section>
@@ -2568,10 +2614,7 @@
       <section class="section partners" id="partners">
         <p class="kicker" data-reveal>Partner Board</p>
         <h2 data-reveal data-reveal-delay="1">共に走るスポンサー</h2>
-        <p data-reveal data-reveal-delay="2">
-          AMT Racingの挑戦を支えてくださる企業・個人パートナーを掲載するエリアです。
-          ロゴや企業名を、活動報告・SNS・資料と連動して発信していきます。
-        </p>
+        <p data-reveal data-reveal-delay="2">AMT Racingの挑戦を支えてくださる企業・個人パートナーを掲載するエリアです。ロゴや企業名を、活動報告・SNS・資料と連動して発信していきます。</p>
         <div class="sponsor-board">
           <article class="sponsor-slot featured-slot" data-reveal>
             <span>Founding / Gold Partner</span>
@@ -2593,13 +2636,18 @@
             <strong>Open</strong>
             <p>物品提供・制作協力など、大会準備を支えるパートナーです。</p>
           </article>
-          <article class="sponsor-slot has-logo" data-reveal data-reveal-delay="4">
+          <article class="sponsor-slot has-logo technical-advisor-card" data-reveal data-reveal-delay="4">
             <span>Technical Advisor</span>
-            <div class="sponsor-logo-frame">
-              <img src="assets/formula-tmu-logo.jpg" alt="Formula TMU" />
+            <div class="sponsor-logo-pair" aria-label="Technical Advisor logos">
+              <div class="advisor-logo">
+                <img src="assets/formula-tmu-logo-clean.png?v=logozoom1" alt="Formula TMU" />
+              </div>
+              <div class="advisor-logo logo-dark">
+                <img src="assets/fpsu-logo-clean.png?v=logozoom1" alt="FPSU" />
+              </div>
             </div>
-            <strong>Formula TMU</strong>
-            <p>東京都立大学Formula Studentチームによる技術支援パートナー。車両開発・設計面の挑戦を支えていただきます。</p>
+            <strong>Formula TMU / FPSU</strong>
+            <p>東京都立大学、埼玉大学のFormula Studentチームにサポートしてもらっています。</p>
           </article>
         </div>
       </section>
@@ -2608,10 +2656,7 @@
         <div>
           <p class="kicker">Contact</p>
           <h2>0から、世界へ。その始まりを、共に創ってください。</h2>
-          <p>
-            協賛のご相談、資料請求、面談のご希望など、お気軽にご連絡ください。
-            0から世界へ向かう過程を、共に創るパートナーをお待ちしています。
-          </p>
+          <p>協賛のご相談、資料請求、面談のご希望など、お気軽にご連絡ください。0から世界へ向かう過程を、共に創るパートナーをお待ちしています。</p>
         </div>
         <a class="mail-card" href="mailto:amaterasuracing@gmail.com">
           <span>協賛について相談する</span>
@@ -2622,10 +2667,7 @@
 
     <footer>
       <img src="assets/amt_logo_horizontal_cropped.png" alt="AMT Racing" />
-      <p>
-        STEM Racing、F1 in Schools、Formula 1等の名称・商標は各権利者に帰属します。
-        AMT Racingは教育活動としてSTEM Racingに挑戦する学生チームです。
-      </p>
+      <p>STEM Racing、F1 in Schools、Formula 1等の名称・商標は各権利者に帰属します。AMT Racingは教育活動としてSTEM Racingに挑戦する学生チームです。</p>
     </footer>
     <script>
       (() => {
@@ -2676,7 +2718,7 @@
               ".number:nth-child(2) span": "Finance",
               ".number:nth-child(2) p": "予算管理、資金調達、協賛提案を学ぶ",
               ".number:nth-child(3) span": "Outreach",
-              ".number:nth-child(3) p": "LP、SNS、資料、面談で伝える力を学ぶ",
+              ".number:nth-child(3) p": "HP、SNS、資料、面談で伝える力を学ぶ",
               ".number:nth-child(4) span": "Project",
               ".number:nth-child(4) p": "役割分担、進捗管理、意思決定を学ぶ",
               "#world .kicker": "World Stage",
@@ -2693,7 +2735,7 @@
               "#challenge .kicker": "Current Mission",
               "#challenge h2": "車両開発、ブランド設計、スポンサー活動を同時に進めています。",
               ".challenge-list .card:nth-child(1) p": "CAD設計、空力改善、3Dモデル制作を進め、走れる車体へ磨き込みます。",
-              ".challenge-list .card:nth-child(2) p": "LP、スポンサー資料、SNS発信で、チームの価値を伝える土台を作ります。",
+              ".challenge-list .card:nth-child(2) p": "HP、スポンサー資料、SNS発信で、チームの価値を伝える土台を作ります。",
               ".challenge-list .card:nth-child(3) p": "企業への協賛提案と面談準備を、自分たちの言葉で進めます。",
               ".challenge-list .card:nth-child(4) p": "国内大会と国際大会を見据え、世界へ向かう体制を整えます。",
               "#support .kicker": "Support AMT Racing",
@@ -2718,31 +2760,24 @@
               ".goal-breakdown div:nth-child(2) p": "大会参加、移動、備品",
               ".goal-breakdown div:nth-child(3) span": "03",
               ".goal-breakdown div:nth-child(3) strong": "発信活動",
-              ".goal-breakdown div:nth-child(3) p": "LP、資料、SNS、報告書",
+              ".goal-breakdown div:nth-child(3) p": "HP、資料、SNS、報告書",
               ".goal-breakdown div:nth-child(4) span": "04",
               ".goal-breakdown div:nth-child(4) strong": "チーム運営",
               ".goal-breakdown div:nth-child(4) p": "制作物、活動費、予備費",
               ".plan-row:nth-child(1) span": "50万円",
-              ".plan-row:nth-child(1) p span:nth-child(1)": "提供内容：車体・ウェア・LP・SNS等を個別相談",
-              ".plan-row:nth-child(1) p span:nth-child(2)": "価値：始まりを支える最上位パートナーとして発信",
+              ".plan-row:nth-child(1) p span:nth-child(1)": "提供内容：車体・ウェア・HP・SNS掲載を個別相談",
               ".plan-row:nth-child(2) span": "30万円",
-              ".plan-row:nth-child(2) p span:nth-child(1)": "提供内容：主要媒体で紹介、活動報告、企業紹介",
-              ".plan-row:nth-child(2) p span:nth-child(2)": "価値：ものづくり・教育支援のストーリー化",
+              ".plan-row:nth-child(2) p span:nth-child(1)": "提供内容：主要媒体掲載、活動報告、企業紹介",
               ".plan-row:nth-child(3) span": "15万円",
-              ".plan-row:nth-child(3) p span:nth-child(1)": "提供内容：LP・SNS・資料・活動報告に掲載",
-              ".plan-row:nth-child(3) p span:nth-child(2)": "価値：STEM教育支援の姿勢を伝える",
+              ".plan-row:nth-child(3) p span:nth-child(1)": "提供内容：HP・SNS・資料・報告書に掲載",
               ".plan-row:nth-child(4) span": "5万円",
-              ".plan-row:nth-child(4) p span:nth-child(1)": "提供内容：LP掲載、活動報告書、SNS紹介",
-              ".plan-row:nth-child(4) p span:nth-child(2)": "価値：若者の挑戦を支える企業として発信",
+              ".plan-row:nth-child(4) p span:nth-child(1)": "提供内容：HP掲載、報告書掲載、SNS紹介",
               ".plan-row:nth-child(5) span": "要相談",
-              ".plan-row:nth-child(5) p span:nth-child(1)": "180万円の目標とは別途受付",
-              ".plan-row:nth-child(5) p span:nth-child(2)": "支援者一覧、活動報告書に掲載。個人として始まりを支える",
+              ".plan-row:nth-child(5) p span:nth-child(1)": "支援者一覧・活動報告書に掲載",
               ".plan-row:nth-child(6) span": "現物提供",
-              ".plan-row:nth-child(6) p span:nth-child(1)": "金額換算外の支援として受付",
-              ".plan-row:nth-child(6) p span:nth-child(2)": "Tシャツ、ステッカー、印刷、グッズ制作など、大会準備を支える実践的パートナーに",
+              ".plan-row:nth-child(6) p span:nth-child(1)": "Tシャツ、印刷、ステッカーなど制作面を支援",
               ".plan-row:nth-child(7) span": "技術支援",
-              ".plan-row:nth-child(7) p span:nth-child(1)": "金額換算外の技術支援として受付",
-              ".plan-row:nth-child(7) p span:nth-child(2)": "CAD、CFD、加工、材料などの助言。技術・ものづくり領域との親和性を発信",
+              ".plan-row:nth-child(7) p span:nth-child(1)": "CAD、CFD、加工、材料などの助言",
               ".partners .kicker": "Partner Board",
               ".partners h2": "共に走るスポンサー",
               ".partners > p:not(.kicker)": "AMT Racingの挑戦を支えてくださる企業・個人パートナーを掲載するエリアです。ロゴや企業名を、活動報告・SNS・資料と連動して発信していきます。",
@@ -2759,8 +2794,8 @@
               ".sponsor-slot:nth-child(4) strong": "Open",
               ".sponsor-slot:nth-child(4) p": "物品提供・制作協力など、大会準備を支えるパートナーです。",
               ".sponsor-slot:nth-child(5) span": "Technical Advisor",
-              ".sponsor-slot:nth-child(5) strong": "Formula TMU",
-              ".sponsor-slot:nth-child(5) p": "東京都立大学Formula Studentチームによる技術支援パートナー。車両開発・設計面の挑戦を支えていただきます。",
+              ".sponsor-slot:nth-child(5) strong": "Formula TMU / FPSU",
+              ".sponsor-slot:nth-child(5) p": "東京都立大学、埼玉大学のFormula Studentチームにサポートしてもらっています。",
               ".contact .kicker": "Contact",
               ".contact h2": "0から、世界へ。その始まりを、共に創ってください。",
               ".contact p:not(.kicker)": "協賛のご相談、資料請求、面談のご希望など、お気軽にご連絡ください。0から世界へ向かう過程を、共に創るパートナーをお待ちしています。",
@@ -2817,7 +2852,7 @@
               ".number:nth-child(2) span": "Finance",
               ".number:nth-child(2) p": "Learn budgeting, fundraising, and sponsor proposals",
               ".number:nth-child(3) span": "Outreach",
-              ".number:nth-child(3) p": "Learn how to communicate through LP, SNS, materials, and meetings",
+              ".number:nth-child(3) p": "Learn how to communicate through the website, SNS, materials, and meetings",
               ".number:nth-child(4) span": "Project",
               ".number:nth-child(4) p": "Learn roles, progress management, and decision-making",
               "#world .kicker": "World Stage",
@@ -2835,7 +2870,7 @@
               "#challenge .kicker": "Current Mission",
               "#challenge h2": "Car development, brand building, and sponsor work are moving at the same time.",
               ".challenge-list .card:nth-child(1) p": "CAD design, aerodynamics, and 3D modeling to build a race-ready car.",
-              ".challenge-list .card:nth-child(2) p": "LP, sponsor materials, and social media to communicate our value.",
+              ".challenge-list .card:nth-child(2) p": "Website, sponsor materials, and social media to communicate our value.",
               ".challenge-list .card:nth-child(3) p": "Sponsor proposals and meeting preparation in our own words.",
               ".challenge-list .card:nth-child(4) p": "Preparing for national finals while building toward the international stage.",
               "#support .kicker": "Support AMT Racing",
@@ -2860,31 +2895,24 @@
               ".goal-breakdown div:nth-child(2) p": "Entry, travel, equipment",
               ".goal-breakdown div:nth-child(3) span": "03",
               ".goal-breakdown div:nth-child(3) strong": "Outreach",
-              ".goal-breakdown div:nth-child(3) p": "LP, materials, SNS, reports",
+              ".goal-breakdown div:nth-child(3) p": "Website, materials, SNS, reports",
               ".goal-breakdown div:nth-child(4) span": "04",
               ".goal-breakdown div:nth-child(4) strong": "Operation",
               ".goal-breakdown div:nth-child(4) p": "Production, activity costs, reserve",
               ".plan-row:nth-child(1) span": "JPY 500,000",
-              ".plan-row:nth-child(1) p span:nth-child(1)": "Includes: car, apparel, LP, SNS and more by consultation",
-              ".plan-row:nth-child(1) p span:nth-child(2)": "Value: presented as the top partner from the beginning",
+              ".plan-row:nth-child(1) p span:nth-child(1)": "Includes: car, apparel, website, and SNS by consultation",
               ".plan-row:nth-child(2) span": "JPY 300,000",
-              ".plan-row:nth-child(2) p span:nth-child(1)": "Includes: key media listing, reports, and company introduction",
-              ".plan-row:nth-child(2) p span:nth-child(2)": "Value: connect manufacturing and education support",
+              ".plan-row:nth-child(2) p span:nth-child(1)": "Includes: key listings, reports, and company intro",
               ".plan-row:nth-child(3) span": "JPY 150,000",
-              ".plan-row:nth-child(3) p span:nth-child(1)": "Includes: LP, SNS, materials, and report listing",
-              ".plan-row:nth-child(3) p span:nth-child(2)": "Value: communicate your STEM education support",
+              ".plan-row:nth-child(3) p span:nth-child(1)": "Includes: website, SNS, materials, and reports",
               ".plan-row:nth-child(4) span": "JPY 50,000",
-              ".plan-row:nth-child(4) p span:nth-child(1)": "Includes: LP listing, activity report, and social post",
-              ".plan-row:nth-child(4) p span:nth-child(2)": "Value: visible support for young challengers",
+              ".plan-row:nth-child(4) p span:nth-child(1)": "Includes: website listing, activity report, and social post",
               ".plan-row:nth-child(5) span": "Custom",
-              ".plan-row:nth-child(5) p span:nth-child(1)": "Accepted separately from the JPY 1.8M goal",
-              ".plan-row:nth-child(5) p span:nth-child(2)": "Supporter list and activity report. Support the beginning as an individual partner.",
+              ".plan-row:nth-child(5) p span:nth-child(1)": "Listed in supporter board and activity reports",
               ".plan-row:nth-child(6) span": "In-kind",
-              ".plan-row:nth-child(6) p span:nth-child(1)": "Accepted as non-cash support",
-              ".plan-row:nth-child(6) p span:nth-child(2)": "Shirts, stickers, printing, goods production, and practical support for competition preparation.",
+              ".plan-row:nth-child(6) p span:nth-child(1)": "Shirts, printing, stickers, and production support",
               ".plan-row:nth-child(7) span": "Technical Support",
-              ".plan-row:nth-child(7) p span:nth-child(1)": "Accepted as non-cash technical support",
-              ".plan-row:nth-child(7) p span:nth-child(2)": "Advice on CAD, CFD, machining, and materials. Strong connection to engineering and manufacturing.",
+              ".plan-row:nth-child(7) p span:nth-child(1)": "Advice on CAD, CFD, machining, and materials",
               ".partners .kicker": "Partner Board",
               ".partners h2": "Sponsors Running With Us",
               ".partners > p:not(.kicker)": "This area highlights the companies and individual partners supporting AMT Racing. Partner names and logos can connect with our reports, social posts, and sponsor materials.",
@@ -2901,8 +2929,8 @@
               ".sponsor-slot:nth-child(4) strong": "Open",
               ".sponsor-slot:nth-child(4) p": "For in-kind support, production support, and practical help toward the competition.",
               ".sponsor-slot:nth-child(5) span": "Technical Advisor",
-              ".sponsor-slot:nth-child(5) strong": "Formula TMU",
-              ".sponsor-slot:nth-child(5) p": "A technical support partner from the Tokyo Metropolitan University Formula Student team, supporting our vehicle development and design challenge.",
+              ".sponsor-slot:nth-child(5) strong": "Formula TMU / FPSU",
+              ".sponsor-slot:nth-child(5) p": "Supported by the Formula Student teams at Tokyo Metropolitan University and Saitama University.",
               ".contact .kicker": "Contact",
               ".contact h2": "From zero to the world. Build the beginning with us.",
               ".contact p:not(.kicker)": "For sponsorship inquiries, materials, or meeting requests, please contact us. We are looking for partners to help build the journey from zero toward the world.",
