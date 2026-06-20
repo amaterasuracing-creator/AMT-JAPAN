@@ -80,19 +80,24 @@
         font-weight: 900;
       }
 
-      .nav a {
+      .nav a,
+      .nav button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         min-height: 42px;
         padding: 0 14px;
         border: 1px solid transparent;
+        color: inherit;
         background: rgba(255, 255, 255, 0.045);
+        font: inherit;
         opacity: 0.86;
+        cursor: pointer;
         transition: color 0.2s ease, opacity 0.2s ease, border-color 0.2s ease, background 0.2s ease;
       }
 
-      .nav a:hover {
+      .nav a:hover,
+      .nav button:hover {
         color: var(--gold);
         border-color: rgba(244, 189, 63, 0.32);
         background: rgba(244, 189, 63, 0.08);
@@ -743,9 +748,14 @@
 
       .hero-status strong {
         display: block;
-        font-size: 17px;
+        font-size: clamp(15px, 1.34vw, 17px);
         line-height: 1.15;
-        overflow-wrap: normal;
+        overflow-wrap: anywhere;
+      }
+
+      .hero-status div:nth-child(2) strong {
+        font-size: clamp(14px, 1.18vw, 16px);
+        line-height: 1.2;
       }
 
       .hero-status div:last-child strong {
@@ -1405,6 +1415,169 @@
         cursor: pointer;
       }
 
+      .activity-gallery {
+        --light-a-x: 18%;
+        --light-a-y: 34%;
+        --light-a-color: rgba(244, 189, 63, 0.14);
+        --light-b-x: 82%;
+        --light-b-y: 58%;
+        --light-b-color: rgba(226, 59, 39, 0.12);
+      }
+
+      .plain-gallery {
+        padding-top: clamp(26px, 4.2vw, 48px);
+        padding-bottom: clamp(26px, 4.2vw, 48px);
+      }
+
+      .gallery-head {
+        max-width: 920px;
+      }
+
+      .gallery-shell {
+        position: relative;
+        margin-top: 36px;
+      }
+
+      .plain-gallery .gallery-shell {
+        margin-top: 0;
+        max-width: min(1080px, calc(100vw - 112px));
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .gallery-window {
+        overflow: hidden;
+        border: 1px solid rgba(21, 26, 34, 0.1);
+        border-top: 4px solid var(--red);
+        background: #ffffff;
+        box-shadow: 0 28px 70px rgba(21, 26, 34, 0.12);
+      }
+
+      .gallery-track {
+        display: flex;
+        transform: translateX(0);
+        transition: transform 0.52s cubic-bezier(0.2, 0.9, 0.14, 1);
+      }
+
+      .gallery-slide {
+        position: relative;
+        flex: 0 0 100%;
+        min-height: clamp(340px, 48vw, 640px);
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .plain-gallery .gallery-slide {
+        min-height: clamp(340px, 64vh, 520px);
+      }
+
+      .gallery-slide img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.01);
+      }
+
+      .gallery-slide::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(6, 8, 13, 0.04), rgba(6, 8, 13, 0.12) 44%, rgba(6, 8, 13, 0.82)),
+          linear-gradient(118deg, rgba(226, 59, 39, 0.28), transparent 48%);
+      }
+
+      .plain-gallery .gallery-slide::after {
+        display: none;
+      }
+
+      .gallery-slide figcaption {
+        position: absolute;
+        left: clamp(18px, 4vw, 44px);
+        right: clamp(18px, 4vw, 44px);
+        bottom: clamp(18px, 4vw, 42px);
+        z-index: 1;
+        color: var(--white);
+      }
+
+      .gallery-slide figcaption span {
+        display: inline-flex;
+        min-height: 28px;
+        align-items: center;
+        padding: 0 10px;
+        color: var(--black);
+        background: var(--gold);
+        font-family: "Oswald", "Noto Sans JP", system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 950;
+        text-transform: uppercase;
+      }
+
+      .gallery-slide figcaption strong {
+        display: block;
+        margin-top: 14px;
+        font-family: "Oswald", "Noto Sans JP", system-ui, sans-serif;
+        font-size: clamp(32px, 5vw, 72px);
+        line-height: 0.95;
+        text-shadow: 0 18px 44px rgba(0, 0, 0, 0.46);
+      }
+
+      .gallery-arrow {
+        position: absolute;
+        top: 50%;
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: clamp(42px, 5vw, 58px);
+        aspect-ratio: 1;
+        border: 1px solid rgba(21, 26, 34, 0.16);
+        color: #111620;
+        background: rgba(255, 255, 255, 0.86);
+        box-shadow: 0 18px 42px rgba(21, 26, 34, 0.18);
+        cursor: pointer;
+        transform: translateY(-50%);
+        font-family: "Oswald", "Noto Sans JP", system-ui, sans-serif;
+        font-size: 30px;
+        font-weight: 950;
+      }
+
+      .gallery-arrow:hover {
+        color: var(--white);
+        background: var(--red);
+      }
+
+      .gallery-arrow.prev {
+        left: clamp(10px, 2vw, 22px);
+      }
+
+      .gallery-arrow.next {
+        right: clamp(10px, 2vw, 22px);
+      }
+
+      .gallery-dots {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .gallery-dot {
+        width: 32px;
+        height: 4px;
+        padding: 0;
+        border: 0;
+        background: rgba(21, 26, 34, 0.18);
+        cursor: pointer;
+      }
+
+      .gallery-dot.is-active {
+        background: var(--red);
+      }
+
       .countdown {
         position: relative;
         overflow: hidden;
@@ -1420,6 +1593,11 @@
         --light-b-x: 18%;
         --light-b-y: 46%;
         --light-b-color: rgba(226, 59, 39, 0.12);
+      }
+
+      .thailand-countdown {
+        border-top: 1px solid rgba(21, 26, 34, 0.08);
+        border-bottom: 1px solid rgba(21, 26, 34, 0.08);
       }
 
       .countdown::before {
@@ -1848,6 +2026,51 @@
         text-transform: uppercase;
       }
 
+      .social-links {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        min-height: 48px;
+        padding: 0 14px;
+        border: 1px solid rgba(21, 26, 34, 0.12);
+        color: #111620;
+        background: rgba(255, 255, 255, 0.78);
+        font-family: "Oswald", "Noto Sans JP", system-ui, sans-serif;
+        font-size: 17px;
+        font-weight: 950;
+        text-transform: uppercase;
+        transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+      }
+
+      .social-link:hover {
+        color: var(--white);
+        background: var(--red);
+        transform: translateY(-2px);
+      }
+
+      .social-icon {
+        display: block;
+        flex: 0 0 auto;
+        width: 27px;
+        height: 27px;
+        margin: 0;
+        border-radius: 8px;
+        object-fit: cover;
+        box-shadow: 0 8px 18px rgba(193, 53, 132, 0.2);
+      }
+
+      .social-icon.linktree-icon {
+        box-shadow: 0 8px 18px rgba(57, 224, 88, 0.2);
+      }
+
       /* Light editorial theme: keep the racing impact dark, make reading sections easier. */
       body {
         color: var(--ink);
@@ -2226,6 +2449,20 @@
         border-top: 1px solid rgba(21, 26, 34, 0.1);
       }
 
+      .thailand-countdown .countdown-date {
+        color: var(--red);
+        border-color: rgba(226, 59, 39, 0.28);
+        background: rgba(255, 255, 255, 0.72);
+      }
+
+      .thailand-countdown .countdown-unit strong {
+        color: var(--red);
+      }
+
+      .thailand-countdown .countdown-unit span {
+        color: rgba(21, 26, 34, 0.64);
+      }
+
       html[lang="en"] .hero h1 {
         font-size: clamp(54px, 7.1vw, 98px);
       }
@@ -2405,6 +2642,14 @@
         .hero-status div {
           border-right: 0;
           border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .plain-gallery .gallery-shell {
+          max-width: 100%;
+        }
+
+        .plain-gallery .gallery-slide {
+          min-height: clamp(320px, 64vh, 520px);
         }
 
         .about,
@@ -3018,7 +3263,7 @@
       </a>
       <nav class="nav" aria-label="Main navigation">
         <a href="#top">Home</a>
-        <a href="#news">Latest</a>
+        <a href="#news">NEWS</a>
         <a href="#about">about us</a>
         <a href="#stem">about STEM RACING</a>
         <a href="#partners">Team partner</a>
@@ -3085,52 +3330,58 @@
         </div>
       </section>
 
+      <section class="section countdown thailand-countdown" id="thailand-final" data-countdown>
+        <div data-reveal>
+          <p class="kicker">Road to Thailand National Finals</p>
+          <h2>STEM RACING Thailand National Finals 2026以降も、挑戦は続きます。</h2>
+          <p>2026年10月29日から始まるSTEM RACING Thailand National Finals 2026、そしてその先を見据えて、AMT Racingは車両開発、資料更新、スポンサー連携、発信活動をさらに進めていきます。</p>
+          <div class="countdown-date">OCTOBER 29, 2026 / THAILAND</div>
+        </div>
+        <div class="countdown-board" data-reveal data-reveal-delay="1">
+          <div class="countdown-unit"><strong data-countdown-days>000</strong><span>Days</span></div>
+          <div class="countdown-unit"><strong data-countdown-hours>00</strong><span>Hours</span></div>
+          <div class="countdown-unit"><strong data-countdown-minutes>00</strong><span>Minutes</span></div>
+          <div class="countdown-unit"><strong data-countdown-seconds>00</strong><span>Seconds</span></div>
+        </div>
+      </section>
+
       <section class="section news" id="news">
         <div class="news-head" data-reveal>
-          <p class="kicker">Latest / Photo Report</p>
+          <p class="kicker">Latest News</p>
           <h2>Japan National Final 2026で、3つの賞を受賞しました。</h2>
-          <p>初出場の大会で得た成果と課題。写真をクリックすると、受賞コメントと活動レポートを同じページ内で確認できます。</p>
+          <p>大会で得た結果、制作の過程、展示で伝えたこと。AMT Racingの現在地を、写真からすぐ確認できます。</p>
         </div>
         <div class="news-grid">
-          <button class="news-card featured" type="button" data-news-trigger data-news-id="judges" data-news-image="assets/amt-news-final-3rd-place-team.jpg" data-reveal>
-            <img src="assets/amt-news-final-3rd-place-team.jpg" alt="AMT Racing team at Japan National Final 3rd Place Award" />
+          <button class="news-card featured" type="button" data-news-trigger data-news-id="judges" data-news-image="assets/amt-news-final-3rd-place-team.jpg">
+            <img src="assets/amt-news-final-3rd-place-team.jpg" alt="AMT Racing members at Japan National Final" />
             <div class="news-card-content">
               <span class="news-date">2026.06.14</span>
               <h3>Japan National Final 2026で3つの賞を受賞</h3>
-              <p>3rd Place、Research & Development、Judges' Choiceを受賞。</p>
-              <strong>Open Report</strong>
+              <p>Development Class 3rd Place、Research &amp; Development、Judges' Choiceを受賞しました。</p>
             </div>
           </button>
-          <button class="news-card" type="button" data-news-trigger data-news-id="trophy" data-news-image="assets/amt-news-award-trophies.jpg" data-reveal data-reveal-delay="1">
+          <button class="news-card" type="button" data-news-trigger data-news-id="trophy" data-news-image="assets/amt-news-award-trophies.jpg">
             <img src="assets/amt-news-award-trophies.jpg" alt="AMT Racing award trophies" />
             <div class="news-card-content">
               <span class="news-date">Award</span>
-              <h3>3つの受賞トロフィー</h3>
-              <p>大会で得た評価を、次の開発と発信へ。</p>
+              <h3>受賞を次の開発へ</h3>
+              <p>得た評価を一度きりで終わらせず、次の車両開発と活動報告へつなげます。</p>
             </div>
           </button>
-          <button class="news-card" type="button" data-news-trigger data-news-id="race" data-news-image="assets/amt-news-race-track.jpg" data-reveal data-reveal-delay="2">
-            <img src="assets/amt-news-race-track.jpg" alt="AMT Racing race track activity" />
+          <button class="news-card" type="button" data-news-trigger data-news-id="race" data-news-image="assets/gallery-race-prep.jpg">
+            <img src="assets/gallery-race-prep.jpg" alt="AMT Racing race preparation" />
             <div class="news-card-content">
               <span class="news-date">Road</span>
               <h3>大会までの道のり</h3>
-              <p>設計、制作、展示準備までの挑戦の過程。</p>
+              <p>車両設計、資料制作、展示準備、スポンサー活動を同時に進めてきました。</p>
             </div>
           </button>
-          <button class="news-card" type="button" data-news-trigger data-news-id="booth" data-news-image="assets/amt-news-booth.jpg" data-reveal data-reveal-delay="3">
+          <button class="news-card" type="button" data-news-trigger data-news-id="booth" data-news-image="assets/amt-news-booth.jpg">
             <img src="assets/amt-news-booth.jpg" alt="AMT Racing exhibition booth" />
             <div class="news-card-content">
               <span class="news-date">Exhibition</span>
-              <h3>チーム展示ブース</h3>
-              <p>車両・資料・ブランドを展示で発信。</p>
-            </div>
-          </button>
-          <button class="news-card" type="button" data-news-trigger data-news-id="vehicle" data-news-image="assets/amt-news-cars.jpg" data-reveal data-reveal-delay="4">
-            <img src="assets/amt-news-cars.jpg" alt="AMT Racing cars on the race track" />
-            <div class="news-card-content">
-              <span class="news-date">Vehicle</span>
-              <h3>車両開発と走行準備</h3>
-              <p>実車を通じて、設計と改善を学ぶ。</p>
+              <h3>活動を伝える展示ブース</h3>
+              <p>車両、資料、ブランド、スポンサーへの感謝をまとめて発信しました。</p>
             </div>
           </button>
         </div>
@@ -3337,6 +3588,45 @@
         </div>
       </section>
 
+      <section class="section activity-gallery plain-gallery" id="gallery" aria-label="AMT Racing photo gallery">
+        <div class="gallery-shell" data-gallery data-reveal>
+          <button class="gallery-arrow prev" type="button" data-gallery-prev aria-label="前の写真へ">‹</button>
+          <div class="gallery-window">
+            <div class="gallery-track" data-gallery-track>
+              <figure class="gallery-slide">
+                <img src="assets/gallery-race-prep.jpg" alt="AMT Racing race preparation" />
+              </figure>
+              <figure class="gallery-slide">
+                <img src="assets/gallery-start-line-wide.png" alt="AMT Racing at the start line" />
+              </figure>
+              <figure class="gallery-slide">
+                <img src="assets/gallery-car-case.jpg" alt="AMT Racing car display" />
+              </figure>
+              <figure class="gallery-slide">
+                <img src="assets/gallery-team-waiting.jpg" alt="AMT Racing team at competition" />
+              </figure>
+              <figure class="gallery-slide">
+                <img src="assets/gallery-3d-print.jpg" alt="AMT Racing 3D printing" />
+              </figure>
+              <figure class="gallery-slide">
+                <img src="assets/amt-news-booth.jpg" alt="AMT Racing exhibition booth" />
+              </figure>
+              <figure class="gallery-slide">
+                <img src="assets/amt-news-cars.jpg" alt="AMT Racing cars on track" />
+              </figure>
+              <figure class="gallery-slide">
+                <img src="assets/amt-news-timing.jpg" alt="STEM Racing timing board" />
+              </figure>
+              <figure class="gallery-slide">
+                <img src="assets/amt-news-award-trophies.jpg" alt="AMT Racing award trophies" />
+              </figure>
+            </div>
+          </div>
+          <button class="gallery-arrow next" type="button" data-gallery-next aria-label="次の写真へ">›</button>
+          <div class="gallery-dots" data-gallery-dots aria-label="ギャラリー操作"></div>
+        </div>
+      </section>
+
       <section class="section dark contact" id="contact">
         <div>
           <p class="kicker">Contact</p>
@@ -3353,6 +3643,16 @@
             <a href="tel:08089796736">
               <small>Phone</small>
               <strong>080-8979-6736</strong>
+            </a>
+          </div>
+          <div class="social-links" aria-label="AMT Racing social links">
+            <a class="social-link" href="https://linktr.ee/amaterasracing?utm_source=linktree_profile_share&amp;ltsid=5370103e-3229-4b3a-a416-707d6d7ec3c7" target="_blank" rel="noopener">
+              <img class="social-icon linktree-icon" src="assets/linktree-icon.png" alt="" aria-hidden="true" />
+              Linktree
+            </a>
+            <a class="social-link" href="https://www.instagram.com/amt_official05?utm_source=qr" target="_blank" rel="noopener">
+              <img class="social-icon" src="assets/instagram-icon.png" alt="" aria-hidden="true" />
+              Instagram
             </a>
           </div>
         </div>
@@ -3387,11 +3687,11 @@
             description: "AMT Racingは、STEM Racingを通じて日本に新しい教育の形をつくる高校生チームです。技術、資金調達、発信、チームづくりを実践し、0から世界へ挑みます。",
             text: {
               '.nav a[href="#top"]': "Home",
-              '.nav a[href="#news"]': "Latest",
-              '.nav a[href="#about"]': "about us",
-              '.nav a[href="#stem"]': "about STEM RACING",
-              '.nav a[href="#partners"]': "Team partner",
-              '.nav a[href="#contact"]': "contact",
+              '.nav a[href="#news"]': "NEWS",
+              '.nav a[href="#about"]': "About Us",
+              '.nav a[href="#stem"]': "About STEM Racing",
+              '.nav a[href="#partners"]': "Team Partner",
+              '.nav a[href="#contact"]': "Contact",
               ".mail-button": "お問い合わせ",
               ".scroll-cue": "Scroll / Space / Enter",
               ".hero-content .kicker": "Official Website / STEM Racing Team",
@@ -3406,6 +3706,27 @@
               ".hero-status div:nth-child(2) span": "Field",
               ".hero-status div:nth-child(2) strong": "STEM × Finance × Outreach",
               ".hero-status div:nth-child(3) span": "Email",
+              "#thailand-final .kicker": "Road to Thailand National Finals",
+              "#thailand-final h2": "STEM RACING Thailand National Finals 2026以降も、挑戦は続きます。",
+              "#thailand-final > div:first-child > p:not(.kicker)": "2026年10月29日から始まるSTEM RACING Thailand National Finals 2026、そしてその先を見据えて、AMT Racingは車両開発、資料更新、スポンサー連携、発信活動をさらに進めていきます。",
+              "#thailand-final .countdown-date": "OCTOBER 29, 2026 / THAILAND",
+              "#thailand-final .countdown-unit:nth-child(1) span": "Days",
+              "#thailand-final .countdown-unit:nth-child(2) span": "Hours",
+              "#thailand-final .countdown-unit:nth-child(3) span": "Minutes",
+              "#thailand-final .countdown-unit:nth-child(4) span": "Seconds",
+              "#gallery .kicker": "Activity Gallery",
+              "#gallery h2": "写真で見る、AMT Racingの挑戦。",
+              "#gallery .gallery-head > p:not(.kicker)": "受賞、車両、展示、レース準備。AMT Racingの活動を、写真から直感的に見られるギャラリーです。",
+              ".gallery-slide:nth-child(1) figcaption span": "Japan Final",
+              ".gallery-slide:nth-child(1) figcaption strong": "Development Class 3rd Place",
+              ".gallery-slide:nth-child(2) figcaption span": "Awards",
+              ".gallery-slide:nth-child(2) figcaption strong": "3つの賞を受賞",
+              ".gallery-slide:nth-child(3) figcaption span": "Exhibition",
+              ".gallery-slide:nth-child(3) figcaption strong": "活動を伝える展示ブース",
+              ".gallery-slide:nth-child(4) figcaption span": "Vehicle",
+              ".gallery-slide:nth-child(4) figcaption strong": "車両開発と走行準備",
+              ".gallery-slide:nth-child(5) figcaption span": "Road",
+              ".gallery-slide:nth-child(5) figcaption strong": "大会までの道のり",
               "#about .kicker": "About AMT Racing",
               "#about h2": "レースチームである前に、新しい教育の形を実践するプロジェクトです。",
               "#about > div:nth-child(2) > p:not(.kicker)": "エンジニアリング、ファイナンス、コミュニケーション、チームビルディング。STEM Racingを通じて、教室だけでは得られない学びを社会の中で実践します。AMTには、Amaterasuのように未来を照らす存在でありたいという想いを込めています。",
@@ -3442,20 +3763,16 @@
               ".news-head > p:not(.kicker)": "初出場の大会で得た成果と課題。写真をクリックすると、受賞コメントと活動レポートを同じページ内で確認できます。",
               ".news-card:nth-child(1) .news-date": "2026.06.14",
               ".news-card:nth-child(1) h3": "Japan National Final 2026で3つの賞を受賞",
-              ".news-card:nth-child(1) p": "3rd Place、Research & Development、Judges' Choiceを受賞。",
-              ".news-card:nth-child(1) strong": "Open Report",
+              ".news-card:nth-child(1) p": "Development Class 3rd Place、Research & Development、Judges' Choiceを受賞しました。",
               ".news-card:nth-child(2) .news-date": "Award",
-              ".news-card:nth-child(2) h3": "3つの受賞トロフィー",
-              ".news-card:nth-child(2) p": "大会で得た評価を、次の開発と発信へ。",
+              ".news-card:nth-child(2) h3": "受賞を次の開発へ",
+              ".news-card:nth-child(2) p": "得た評価を一度きりで終わらせず、次の車両開発と活動報告へつなげます。",
               ".news-card:nth-child(3) .news-date": "Road",
               ".news-card:nth-child(3) h3": "大会までの道のり",
-              ".news-card:nth-child(3) p": "設計、制作、展示準備までの挑戦の過程。",
+              ".news-card:nth-child(3) p": "車両設計、資料制作、展示準備、スポンサー活動を同時に進めてきました。",
               ".news-card:nth-child(4) .news-date": "Exhibition",
-              ".news-card:nth-child(4) h3": "チーム展示ブース",
-              ".news-card:nth-child(4) p": "車両・資料・ブランドを展示で発信。",
-              ".news-card:nth-child(5) .news-date": "Vehicle",
-              ".news-card:nth-child(5) h3": "車両開発と走行準備",
-              ".news-card:nth-child(5) p": "実車を通じて、設計と改善を学ぶ。",
+              ".news-card:nth-child(4) h3": "活動を伝える展示ブース",
+              ".news-card:nth-child(4) p": "車両、資料、ブランド、スポンサーへの感謝をまとめて発信しました。",
               "#challenge .kicker": "Next Mission",
               "#challenge h2": "大会で得た学びを、次の開発と発信へつなげます。",
               ".challenge-list .card:nth-child(1) h3": "Vehicle Update",
@@ -3542,10 +3859,10 @@
             text: {
               '.nav a[href="#top"]': "Home",
               '.nav a[href="#news"]': "Latest",
-              '.nav a[href="#about"]': "about us",
-              '.nav a[href="#stem"]': "about STEM RACING",
-              '.nav a[href="#partners"]': "Team partner",
-              '.nav a[href="#contact"]': "contact",
+              '.nav a[href="#about"]': "About Us",
+              '.nav a[href="#stem"]': "About STEM Racing",
+              '.nav a[href="#partners"]': "Team Partner",
+              '.nav a[href="#contact"]': "Contact",
               ".mail-button": "Contact",
               ".scroll-cue": "Scroll / Space / Enter",
               ".hero-content .kicker": "Official Website / STEM Racing Team",
@@ -3560,8 +3877,29 @@
               ".hero-status div:nth-child(2) span": "Field",
               ".hero-status div:nth-child(2) strong": "STEM × Finance × Outreach",
               ".hero-status div:nth-child(3) span": "Email",
+              "#thailand-final .kicker": "Road to Thailand National Finals",
+              "#thailand-final h2": "The Challenge Continues Beyond STEM Racing Thailand National Finals 2026.",
+              "#thailand-final > div:first-child > p:not(.kicker)": "STEM Racing Thailand National Finals 2026 begins on October 29, 2026. AMT Racing will keep improving the car, updating materials, strengthening sponsor collaboration, and sharing our activity beyond the next stage.",
+              "#thailand-final .countdown-date": "OCTOBER 29, 2026 / THAILAND",
+              "#thailand-final .countdown-unit:nth-child(1) span": "Days",
+              "#thailand-final .countdown-unit:nth-child(2) span": "Hours",
+              "#thailand-final .countdown-unit:nth-child(3) span": "Minutes",
+              "#thailand-final .countdown-unit:nth-child(4) span": "Seconds",
+              "#gallery .kicker": "Activity Gallery",
+              "#gallery h2": "AMT Racing's Journey in Photos.",
+              "#gallery .gallery-head > p:not(.kicker)": "Awards, vehicles, exhibition, and preparation. A visual gallery that shows AMT Racing's activity at a glance.",
+              ".gallery-slide:nth-child(1) figcaption span": "Japan Final",
+              ".gallery-slide:nth-child(1) figcaption strong": "Development Class 3rd Place",
+              ".gallery-slide:nth-child(2) figcaption span": "Awards",
+              ".gallery-slide:nth-child(2) figcaption strong": "Three Awards",
+              ".gallery-slide:nth-child(3) figcaption span": "Exhibition",
+              ".gallery-slide:nth-child(3) figcaption strong": "Team Exhibition Booth",
+              ".gallery-slide:nth-child(4) figcaption span": "Vehicle",
+              ".gallery-slide:nth-child(4) figcaption strong": "Vehicle Development",
+              ".gallery-slide:nth-child(5) figcaption span": "Road",
+              ".gallery-slide:nth-child(5) figcaption strong": "Road to the Final",
               "#about .kicker": "About AMT Racing",
-              "#about h2": "Before we are a racing team, we are a project practicing a new form of education.",
+              "#about h2": "Before We Are a Racing Team, We Are Building a New Form of Education.",
               "#about > div:nth-child(2) > p:not(.kicker)": "Engineering, finance, communication, and team building. Through STEM Racing, we practice learning that cannot happen only inside the classroom. The name AMT carries our hope to light the future like Amaterasu.",
               ".status-grid .card:nth-child(1) h3": "A Name That Lights the Future",
               ".status-grid .card:nth-child(1) p": "Carrying the Amaterasu spirit, we aim for the world as a challenge from Japan.",
@@ -3570,7 +3908,7 @@
               ".status-grid .card:nth-child(3) h3": "Build From the Beginning",
               ".status-grid .card:nth-child(3) p": "Companies can join the process of becoming a team, not only the finished result.",
               "#stem .kicker": "What is STEM Racing?",
-              "#stem h2": "Learning real-world skills through racing.",
+              "#stem h2": "Learning Real-World Skills Through Racing.",
               "#stem > div:first-child > p:not(.kicker)": "In STEM Racing, speed alone is not enough. Students handle design, fundraising, sponsor outreach, branding, and presentation. Through this competition, AMT Racing aims to build a new model of education in Japan.",
               ".number:nth-child(1) span": "STEM",
               ".number:nth-child(1) p": "Learn through CAD, aerodynamics, manufacturing, and testing",
@@ -3581,38 +3919,34 @@
               ".number:nth-child(4) span": "Project",
               ".number:nth-child(4) p": "Learn roles, progress management, and decision-making",
               "#world .kicker": "World Stage",
-              ".world-copy h2": "Beyond the national finals. From zero to the world stage.",
-              ".world-copy > p:not(.kicker)": "Our goal is the international stage beyond the national finals. We do not only want to go to the world; we want to build a team that can compete there through engineering, branding, and sponsor strategy.",
-              ".world-stat:nth-child(1) span": "World Finals 2025 participants",
-              ".world-stat:nth-child(2) span": "Countries and regions",
-              ".world-stat:nth-child(3) strong": "1s range",
-              ".world-stat:nth-child(3) span": "20m car development",
+              ".world-copy h2": "Beyond the National Finals. From Zero to the World Stage.",
+              ".world-copy > p:not(.kicker)": "Our goal is the international stage beyond the National Finals. We do not only want to go to the world; we want to build a team that can compete there through engineering, branding, and sponsor strategy.",
+              ".world-stat:nth-child(1) span": "World Finals 2025 Participants",
+              ".world-stat:nth-child(2) span": "Countries and Regions",
+              ".world-stat:nth-child(3) strong": "1s Range",
+              ".world-stat:nth-child(3) span": "20m Car Development",
               ".world-copy .button.video": "Watch on YouTube",
               ".video-kicker": "Watch on YouTube",
               ".video-title": "STEM Racing World Finals 2025",
               ".video-caption span:nth-child(1)": "Aramco STEM Racing World Finals 2025",
-              ".video-caption span:nth-child(2)": "Click to open",
+              ".video-caption span:nth-child(2)": "Click to Open",
               "#news .kicker": "News / Activity Report",
-              "#news h2": "AMT Racing received three awards at Japan National Final 2026.",
+              "#news h2": "AMT Racing Received Three Awards at Japan National Final 2026.",
               ".news-head > p:not(.kicker)": "Results and lessons from our first national final. Click each photo to read the report and comments without leaving this page.",
               ".news-card:nth-child(1) .news-date": "2026.06.14",
               ".news-card:nth-child(1) h3": "Three Awards at Japan National Final 2026",
-              ".news-card:nth-child(1) p": "3rd Place, Research & Development, and Judges' Choice.",
-              ".news-card:nth-child(1) strong": "Open Report",
+              ".news-card:nth-child(1) p": "Development Class 3rd Place, Research & Development, and Judges' Choice.",
               ".news-card:nth-child(2) .news-date": "Award",
-              ".news-card:nth-child(2) h3": "Three Award Trophies",
-              ".news-card:nth-child(2) p": "Turning competition feedback into our next development cycle.",
+              ".news-card:nth-child(2) h3": "Turning Awards Into Development",
+              ".news-card:nth-child(2) p": "We will connect the feedback to the next car development cycle and activity reports.",
               ".news-card:nth-child(3) .news-date": "Road",
               ".news-card:nth-child(3) h3": "Road to the Final",
-              ".news-card:nth-child(3) p": "The journey through design, production, and exhibition preparation.",
+              ".news-card:nth-child(3) p": "Vehicle design, materials, exhibition preparation, and sponsor activity moved forward together.",
               ".news-card:nth-child(4) .news-date": "Exhibition",
               ".news-card:nth-child(4) h3": "Team Exhibition Booth",
-              ".news-card:nth-child(4) p": "Sharing the car, materials, and brand.",
-              ".news-card:nth-child(5) .news-date": "Vehicle",
-              ".news-card:nth-child(5) h3": "Vehicle Development",
-              ".news-card:nth-child(5) p": "Learning design and improvement through the car.",
+              ".news-card:nth-child(4) p": "Sharing the car, materials, brand, and appreciation for our supporters.",
               "#challenge .kicker": "Next Mission",
-              "#challenge h2": "We turn what we learned at the competition into the next development cycle.",
+              "#challenge h2": "Turning Competition Lessons Into the Next Development Cycle.",
               ".challenge-list .card:nth-child(1) h3": "Vehicle Update",
               ".challenge-list .card:nth-child(1) p": "Improve vehicle design, aerodynamics, and manufacturing quality based on what we learned.",
               ".challenge-list .card:nth-child(2) h3": "Report / Web",
@@ -3622,7 +3956,7 @@
               ".challenge-list .card:nth-child(4) h3": "Next Challenge",
               ".challenge-list .card:nth-child(4) p": "Continue as a team toward the next competition, presentation, and development work.",
               "#support .kicker": "Support AMT Racing",
-              "#support h2": "We are looking for partners to keep this activity moving forward.",
+              "#support h2": "We Are Looking for Partners to Keep This Activity Moving Forward.",
               "#support > p:not(.kicker)": "After the competition, AMT Racing will continue vehicle development, activity reporting, sponsor collaboration, and STEM education outreach. Support helps young challengers bring a new form of education into society.",
               ".support-grid .card:nth-child(1) h3": "Support Youth Challenge",
               ".support-grid .card:nth-child(1) p": "Show your company’s commitment to backing young challengers.",
@@ -3680,7 +4014,7 @@
               ".sponsor-slot:nth-child(5) strong": "Formula TMU / FPSU",
               ".sponsor-slot:nth-child(5) p": "Supported by the Formula Student teams at Tokyo Metropolitan University and Saitama University.",
               ".contact .kicker": "Contact",
-              ".contact h2": "Contact us for activities, sponsorship, and media inquiries.",
+              ".contact h2": "Contact Us for Activities, Sponsorship, and Media Inquiries.",
               ".contact p:not(.kicker)": "For sponsorship inquiries, activity information, materials, or meeting requests, please contact AMT Racing here.",
               ".mail-card span": "Contact AMT Racing",
               "footer p": "STEM Racing, F1 in Schools, Formula 1 and related trademarks belong to their respective owners. AMT Racing is a student team participating in STEM Racing as an educational activity."
@@ -3976,8 +4310,74 @@
           }
         });
 
+        const gallery = document.querySelector("[data-gallery]");
+        if (gallery) {
+          const galleryTrack = gallery.querySelector("[data-gallery-track]");
+          const gallerySlides = Array.from(gallery.querySelectorAll(".gallery-slide"));
+          const galleryPrev = gallery.querySelector("[data-gallery-prev]");
+          const galleryNext = gallery.querySelector("[data-gallery-next]");
+          const galleryDots = gallery.querySelector("[data-gallery-dots]");
+          let galleryIndex = 0;
+          let galleryTimer = null;
+
+          const setGalleryIndex = (nextIndex) => {
+            if (!galleryTrack || gallerySlides.length === 0) return;
+            galleryIndex = (nextIndex + gallerySlides.length) % gallerySlides.length;
+            galleryTrack.style.transform = `translateX(${-100 * galleryIndex}%)`;
+            if (galleryDots) {
+              galleryDots.querySelectorAll(".gallery-dot").forEach((dot, index) => {
+                dot.classList.toggle("is-active", index === galleryIndex);
+                dot.setAttribute("aria-current", index === galleryIndex ? "true" : "false");
+              });
+            }
+          };
+
+          const startGallery = () => {
+            if (reduceMotion || gallerySlides.length <= 1) return;
+            window.clearInterval(galleryTimer);
+            galleryTimer = window.setInterval(() => setGalleryIndex(galleryIndex + 1), 4200);
+          };
+
+          const resetGallery = () => {
+            startGallery();
+          };
+
+          if (galleryDots) {
+            gallerySlides.forEach((_, index) => {
+              const dot = document.createElement("button");
+              dot.type = "button";
+              dot.className = "gallery-dot";
+              dot.setAttribute("aria-label", `写真 ${index + 1} を表示`);
+              dot.addEventListener("click", () => {
+                setGalleryIndex(index);
+                resetGallery();
+              });
+              galleryDots.appendChild(dot);
+            });
+          }
+
+          if (galleryPrev) {
+            galleryPrev.addEventListener("click", () => {
+              setGalleryIndex(galleryIndex - 1);
+              resetGallery();
+            });
+          }
+
+          if (galleryNext) {
+            galleryNext.addEventListener("click", () => {
+              setGalleryIndex(galleryIndex + 1);
+              resetGallery();
+            });
+          }
+
+          gallery.addEventListener("mouseenter", () => window.clearInterval(galleryTimer));
+          gallery.addEventListener("mouseleave", startGallery);
+          setGalleryIndex(0);
+          startGallery();
+        }
+
         const countdown = document.querySelector("[data-countdown]");
-        const nationalFinalsStart = new Date("2026-06-12T00:00:00+09:00").getTime();
+        const thailandFinalsStart = new Date("2026-10-29T00:00:00+07:00").getTime();
         const countdownTargets = {
           days: document.querySelector("[data-countdown-days]"),
           hours: document.querySelector("[data-countdown-hours]"),
@@ -3989,7 +4389,7 @@
         const updateCountdown = () => {
           if (!countdown) return;
 
-          const remaining = Math.max(0, nationalFinalsStart - Date.now());
+          const remaining = Math.max(0, thailandFinalsStart - Date.now());
           const totalSeconds = Math.floor(remaining / 1000);
           const days = Math.floor(totalSeconds / 86400);
           const hours = Math.floor((totalSeconds % 86400) / 3600);
